@@ -1,0 +1,7 @@
+C:\Web\Doublewide\Doublewide\bin\Doublewide.dll
+C:\Web\Doublewide\Doublewide\bin\Doublewide.pdb
+C:\Web\Doublewide\Doublewide\bin\Nancy.dll
+C:\Web\Doublewide\Doublewide\bin\Nancy.Hosting.Aspnet.dll
+C:\Web\Doublewide\Doublewide\obj\Debug\ResolveAssemblyReference.cache
+C:\Web\Doublewide\Doublewide\obj\Debug\Doublewide.dll
+C:\Web\Doublewide\Doublewide\obj\Debug\Doublewide.pdb
