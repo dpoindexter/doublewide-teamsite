@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Nancy;
+﻿using Nancy;
 
-namespace Doublewide.Modules
+namespace Doublewide.Web.Modules
 {
     public class BlogModule : NancyModule
     {

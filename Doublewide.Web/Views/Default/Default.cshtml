@@ -1,0 +1,17 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<DateTime>
+
+@model System.DateTime
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>title</title>
+    </head>
+    <body>
+        <div>
+            <h1>Hello FooBar FooBar</h1>
+            <p>@Model.ToString("MM/dd/yyyy")</p>
+        </div>
+    </body>
+</html>

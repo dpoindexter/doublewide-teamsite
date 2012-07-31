@@ -1,0 +1,4 @@
+<Modules>
+  <Module PersistentId="71F50294-CC73-4172-B86A-2DBFD0558AA6" ModuleId="Doublewide.Web" />
+  <Module PersistentId="151FE31C-BE16-4949-829A-D5181152E0E1" ModuleId="Doublewide.Domain" />
+</Modules>
