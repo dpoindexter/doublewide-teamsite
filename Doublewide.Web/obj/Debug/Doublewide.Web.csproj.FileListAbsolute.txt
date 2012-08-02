@@ -1,9 +1,0 @@
-C:\Web\Doublewide\Doublewide.Web\bin\Doublewide.Web.dll
-C:\Web\Doublewide\Doublewide.Web\bin\Doublewide.Web.pdb
-C:\Web\Doublewide\Doublewide.Web\bin\Nancy.dll
-C:\Web\Doublewide\Doublewide.Web\bin\Nancy.Hosting.Aspnet.dll
-C:\Web\Doublewide\Doublewide.Web\bin\Nancy.ViewEngines.Razor.dll
-C:\Web\Doublewide\Doublewide.Web\bin\System.Web.Razor.dll
-C:\Web\Doublewide\Doublewide.Web\obj\Debug\ResolveAssemblyReference.cache
-C:\Web\Doublewide\Doublewide.Web\obj\Debug\Doublewide.Web.dll
-C:\Web\Doublewide\Doublewide.Web\obj\Debug\Doublewide.Web.pdb
