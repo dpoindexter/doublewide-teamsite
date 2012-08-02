@@ -1,0 +1,23 @@
+﻿body {
+    background-color: #1a215c;
+}
+
+.container {
+    margin-top: 0;
+    background-color: #252c6d;
+    color: #fff;   
+}
+
+header {
+    height: 50px;
+    background-color: #080d37;    
+}
+
+.logotype {
+    height: 120px;
+    background: #ed1f24 url('../images/logotype.png') no-repeat center center;
+}
+
+.content {
+    clear: both;   
+}

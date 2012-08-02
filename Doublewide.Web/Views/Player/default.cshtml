@@ -1,5 +1,5 @@
-﻿@using Doublewide.Web.Modules
-@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<IEnumerable<BlogPostModel>>
+﻿@using Doublewide.Web.Models
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<IEnumerable<PlayerModel>>
 
 <!DOCTYPE html>
 <html>
@@ -23,10 +23,10 @@
                 <h2>@@doublewidetx</h2>
             </section>
             <section class="blog span6">
-                @foreach (var post in Model) { 
-                    <article class="blog-post">
-                        <h2>@post.Title</h2>
-                        <h4>@post.Timestamp</h4>
+                @foreach (var player in Model) { 
+                    <article class="roster-player">
+                        <h2>@player.FullName</h2>
+                        <h4>@player.PlayerNumber</h4>
                     </article>
                 }
             </section>

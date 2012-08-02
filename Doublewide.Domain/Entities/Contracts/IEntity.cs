@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Doublewide.Domain.Entities.Contracts
 {
-    interface IEntity<T>
+    public interface IEntity<T>
     {
         T Id { get; set; }
     }
