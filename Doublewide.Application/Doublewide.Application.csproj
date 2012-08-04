@@ -74,12 +74,8 @@
     <Compile Include="Services\Contracts\IPlayerService.cs" />
     <Compile Include="Services\PlayerService.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="app.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Doublewide.Domain\Doublewide.Domain.csproj">
@@ -95,7 +91,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>61021</DevelopmentServerPort>
+          <DevelopmentServerPort>64092</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

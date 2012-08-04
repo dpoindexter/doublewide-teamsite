@@ -1,11 +1,7 @@
-﻿using System;
-using System.Data;
-using System.Configuration;
+﻿using System.Data;
 using System.Collections.Generic;
 using Doublewide.Application.Repositories.Contracts;
 using Doublewide.Domain.Entities.Contracts;
-using ServiceStack.Common.Utils;
-using ServiceStack.DataAnnotations;
 using ServiceStack.OrmLite;
 using ServiceStack.OrmLite.SqlServer;
 
@@ -17,21 +13,15 @@ namespace Doublewide.Application.Repositories
         protected readonly IDbConnectionFactory _connectionFactory;
         protected readonly IDbConnection _db;
 
-        public BaseRepository() : this(string.Empty)
+        protected BaseRepository()
         {
-        }
-
-        public BaseRepository(string connectionString)
-        {
-            _connectionString = (!String.IsNullOrEmpty(connectionString))
-                ? connectionString
-                : ConfigurationManager.ConnectionStrings["DoublewideContext"].ConnectionString;
-
+            _connectionString =
+                @"Data Source=.\SQLEXPRESS;initial catalog=Doublewide;user id=doublewide_user;password=welln@styh00p!";
             _connectionFactory = new OrmLiteConnectionFactory(_connectionString, SqlServerOrmLiteDialectProvider.Instance);
             _db = _connectionFactory.OpenDbConnection();
         }
 
-        public abstract TEntity Get(TId Id);
+        public abstract TEntity Get(TId id);
         public abstract IEnumerable<TEntity> GetAll();
         public abstract void Create(TEntity entity);
         public abstract void Save(TEntity entity);

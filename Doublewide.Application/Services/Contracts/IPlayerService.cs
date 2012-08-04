@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using Doublewide.Domain.Entities.Team;
+using Doublewide.Domain.Team;
 
 namespace Doublewide.Application.Services.Contracts
 {
     public interface IPlayerService
     {
-        Player GetPlayerById(int Id);
+        Player GetPlayerById(int id);
         IEnumerable<Player> GetAllPlayers();
     }
 }

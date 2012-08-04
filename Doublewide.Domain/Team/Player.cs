@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using Doublewide.Domain.Entities;
+using ServiceStack.DataAnnotations;
 
-namespace Doublewide.Domain.Entities.Team
+namespace Doublewide.Domain.Team
 {
     public class Player : Entity
     {
@@ -28,21 +28,25 @@ namespace Doublewide.Domain.Entities.Team
         public string Nicknames { get; set; }
         public IEnumerable<int> Seasons { get; set; }
 
+        [Ignore]
         public string FullName
         {
             get { return FirstName + " " + LastName; }
         }
 
+        [Ignore]
         public int YearsPlayed
         {
             get { return Seasons.Count(); }
         }
 
+        [Ignore]
         public string FormattedPhone
         {
-            get { return String.Format("0:(nnn) nnn-nnnn", Phone); }
+            get { return Phone.ToString("0:(nnn) nnn-nnnn"); }
         }
 
+        [Ignore]
         public string FormattedHeight
         {
             get { return String.Format("{0}'{1}", Height / 12, Height % 12); }

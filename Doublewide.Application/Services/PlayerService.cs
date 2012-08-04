@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Doublewide.Application.Services.Contracts;
 using Doublewide.Application.Repositories.Contracts;
-using Doublewide.Domain.Entities.Team;
+using Doublewide.Domain.Team;
 
 namespace Doublewide.Application.Services
 {
