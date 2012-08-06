@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Doublewide.Domain.Entities;
+﻿using Doublewide.Domain.Entities;
 
-namespace Doublewide.Domain.Entities.Season
+namespace Doublewide.Domain.Season
 {
     public class Game : Entity
     {
+        public string Opponent { get; set; }
+        public int DoublewideScore { get; set; }
+        public int OpponentScore { get; set; }
     }
 }

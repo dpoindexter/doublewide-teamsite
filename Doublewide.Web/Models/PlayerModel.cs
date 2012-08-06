@@ -3,6 +3,6 @@
     public class PlayerModel
     {
         public string FullName { get; set; }
-        public int PlayerNumber { get; set; }
+        public int JerseyNumber { get; set; }
     }
 }
