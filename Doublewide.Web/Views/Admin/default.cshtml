@@ -1,6 +1,12 @@
-﻿@using Doublewide.Web.Models
-@using System.Collections.Generic
-@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<IEnumerable<BlogPostModel>>
+﻿@using System.Collections.Generic
+@using Doublewide.Web.Models
+@using ServiceStack.Text;
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<AdminViewModel>
+              
+@{
+    var postJson = JsonSerializer.SerializeToString(Model.Posts);
+    var tournamentJson = JsonSerializer.SerializeToString(new List<TournamentModel>());  
+}
 
 <!DOCTYPE html>
 <html>
@@ -16,12 +22,17 @@
                     <h1>Update Blog</h1>
                     <div class="row-fluid">
                         <section class="blog-posts span3">
-                            <div class="blog-post">Post 1</div>
-                            <div class="blog-post">Post 2</div>
-                            <div class="blog-post">Post 3</div>
-                            <div class="blog-post">Post 4</div>                    
+                            <h2>Post</h2>
+                            @foreach (var post in Model.Posts)
+                            {
+                                <div class="blog-post">
+                                    <h3>@post.Title</h3>
+                                    @post.Author on @post.Timestamp
+                                </div>
+                            }                
                         </section>
                         <section class="blog-update span9">
+                            <h2>New Post</h2>
                             <textarea class="blog-content"></textarea>
                         </section>
                     </div>
@@ -31,5 +42,30 @@
                 </section>
             </div>
         </div>
+
+        <script type="text/x-template" id="post-template">
+            <div class="blog-post">
+                <h3><%=post.Title%></h3>
+                <%=post.Author%> on <%=post.Timestamp%>
+            </div>
+        </script>
+        
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script type="text/javascript" src="@Url.Content("~/content/js/lib/underscore-min.js")"></script>
+        <script type="text/javascript" src="@Url.Content("~/content/js/lib/backbone-min.js")"></script>
+        <script type="text/javascript" src="@Url.Content("~/content/js/admin.js")"></script>
+        <script type="text/javascript">
+            (function () {
+                
+                dwtx.viewData = {
+                    posts: @Html.Raw(postJson),
+                    tournaments: @Html.Raw(tournamentJson)
+                };
+
+                $(function () {
+                    dwtx.Admin.init();
+                });
+            }).call(this);
+        </script>
     </body>
 </html>

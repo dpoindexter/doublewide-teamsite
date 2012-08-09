@@ -1,6 +1,7 @@
-﻿using Doublewide.Web.Models;
+﻿using System;
+using System.Collections.Generic;
+using Doublewide.Web.Models;
 using Nancy;
-using Nancy.ModelBinding;
 
 namespace Doublewide.Web.Modules
 {
@@ -9,10 +10,18 @@ namespace Doublewide.Web.Modules
         public AdminModule() : base("/admin")
         {
             Get["/"] = parameters =>
-                           {
-                               var model = new AdminViewModel();
-                               return View["default.cshtml", model];
-                           };
+            {
+                var model = new AdminViewModel
+                {
+                    Posts = new List<BlogPostModel>
+                    {
+                        new BlogPostModel { Author = "Steven Darroh", Timestamp = DateTime.Now.AddDays(-3).ToString("d"), Title = "Doublewide roster set" },
+                        new BlogPostModel { Author = "Jerrod Wolfe", Timestamp = DateTime.Now.AddDays(-10).ToString("d"), Title = "Check out these jersey!" }
+                    }
+                };
+
+                return View["default.cshtml", model];
+            };
         }
     }
 }

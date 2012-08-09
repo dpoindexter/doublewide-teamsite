@@ -9,6 +9,7 @@ namespace Doublewide.Domain.Blog
         public string Content { get; set; }
         public DateTime Timestamp { get; set; }
         public int AuthorId { get; set; }
+        public bool Published { get; set; }
         public IEnumerable<string> Tags { get; set; }
     }
 }
