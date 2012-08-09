@@ -16,6 +16,12 @@ header {
 .logotype {
     height: 120px;
     background: #ed1f24 url('../images/logotype.png') no-repeat center center;
+    border: 1px solid #f0696d;
+    border-top: none;
+    box-shadow: #080d37 1px 1px 1px;
+    -moz-box-shadow: #080d37 1px 1px 1px;
+    -webkit-box-shadow: #080d37 1px 1px 1px;
+    -o-box-shadow: #080d37 1px 1px 1px;
 }
 
 .content {

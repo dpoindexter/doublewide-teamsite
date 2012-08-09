@@ -1,0 +1,27 @@
+﻿@using Doublewide.Web.Modules
+@using System.Collections.Generic
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<IEnumerable<BlogPostModel>>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DW*TX | Doublewide Ultimate Club, Austin Texas</title>
+        <link rel="stylesheet" href="@Url.Content("~/content/css/admin.css")"/>
+    </head>
+    <body>
+        <div class="container">
+            <section class="editor blog">
+                <h1>Update Blog</h1>
+                <section class="blog-posts">
+                    
+                </section>
+                <section class="blog-update">
+                    <textarea class="blog-content"></textarea>
+                </section>
+            </section>
+            <section class="editor results">
+                <h1>Update Results</h1>
+            </section>
+        </div>
+    </body>
+</html>

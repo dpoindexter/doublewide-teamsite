@@ -67,7 +67,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Blog\Post.cs" />
-    <Compile Include="Blog\Tag.cs" />
     <Compile Include="Entities\Contracts\IEntity.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Season\Game.cs" />
