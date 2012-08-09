@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Doublewide.Web.Models;
 using Nancy;
 
 namespace Doublewide.Web.Modules
@@ -16,11 +17,5 @@ namespace Doublewide.Web.Modules
 
             Get["/"] = parameters => View["default.cshtml", model];
         }
-    }
-
-    public class BlogPostModel
-    {
-        public string Title { get; set; }
-        public string Timestamp { get; set; }
     }
 }

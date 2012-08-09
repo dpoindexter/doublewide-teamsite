@@ -4,6 +4,9 @@ body {
     background-color: #1f1f26;
     color: white;
     font-family: 'Droid Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
 h1 {
@@ -20,31 +23,11 @@ textarea.blog-content {
     font-weight: 700;
 }
 
-.container {
-    background-color: #333440;
+.container-fluid {
     position: absolute;
+    background-color: #333440;
     top: 30px;
-    bottom: 30px;
     left: 30px;
     right: 30px;
-    min-width: 960px;
-    min-height: 600px;
-}
-
-.blog {
-    float: left;
-    width: 49.9%;
-    height: 100%;
-    margin: 0;
-}
-
-.blog-posts {
-    
-}
-
-.results {
-    float: left;
-    width: 49.9%;
-    height: 100%;
-    margin: 0;
+    bottom: 30px;
 }

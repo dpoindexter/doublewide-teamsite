@@ -1,4 +1,4 @@
-﻿@using Doublewide.Web.Modules
+﻿@using Doublewide.Web.Models
 @using System.Collections.Generic
 @inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<IEnumerable<BlogPostModel>>
 
@@ -6,22 +6,30 @@
 <html>
     <head>
         <title>DW*TX | Doublewide Ultimate Club, Austin Texas</title>
+        <link rel="stylesheet" href="@Url.Content("~/content/css/lib/bootstrap-responsive.css")"/>
         <link rel="stylesheet" href="@Url.Content("~/content/css/admin.css")"/>
     </head>
     <body>
-        <div class="container">
-            <section class="editor blog">
-                <h1>Update Blog</h1>
-                <section class="blog-posts">
-                    
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <section class="editor blog span6">
+                    <h1>Update Blog</h1>
+                    <div class="row-fluid">
+                        <section class="blog-posts span3">
+                            <div class="blog-post">Post 1</div>
+                            <div class="blog-post">Post 2</div>
+                            <div class="blog-post">Post 3</div>
+                            <div class="blog-post">Post 4</div>                    
+                        </section>
+                        <section class="blog-update span9">
+                            <textarea class="blog-content"></textarea>
+                        </section>
+                    </div>
                 </section>
-                <section class="blog-update">
-                    <textarea class="blog-content"></textarea>
+                <section class="editor results span6">
+                    <h1>Update Results</h1>
                 </section>
-            </section>
-            <section class="editor results">
-                <h1>Update Results</h1>
-            </section>
+            </div>
         </div>
     </body>
 </html>

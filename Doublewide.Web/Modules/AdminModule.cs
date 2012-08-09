@@ -8,19 +8,11 @@ namespace Doublewide.Web.Modules
     {
         public AdminModule() : base("/admin")
         {
-            Get["/"] = parameters => View["default.cshtml"];
-
-            Get["/season"] = parameters =>
-            {
-                var model = new { };
-                return View["season.cshtml", model];
-            };
-
-            Post["/season"] = parameters =>
-            {
-                var season = this.Bind<SeasonEditingModel>();
-                return View["foo"];
-            };
+            Get["/"] = parameters =>
+                           {
+                               var model = new AdminViewModel();
+                               return View["default.cshtml", model];
+                           };
         }
     }
 }

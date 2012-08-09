@@ -69,9 +69,16 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\css\admin.css" />
+    <Content Include="Content\css\lib\bootstrap-responsive.css" />
+    <Content Include="Content\css\lib\bootstrap-responsive.min.css" />
     <Content Include="Content\css\lib\bootstrap.css" />
+    <Content Include="Content\css\lib\bootstrap.min.css" />
+    <Content Include="Content\css\admin.css" />
     <Content Include="Content\css\main.css" />
+    <Content Include="Content\images\glyphicons-halflings-white.png" />
+    <Content Include="Content\images\glyphicons-halflings.png" />
+    <Content Include="Content\js\bootstrap.js" />
+    <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -82,9 +89,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper\CustomBootstrapper.cs" />
+    <Compile Include="Models\BlogPostModel.cs" />
     <Compile Include="Models\GameModel.cs" />
     <Compile Include="Models\PlayerModel.cs" />
-    <Compile Include="Models\SeasonEditingModel.cs" />
+    <Compile Include="Models\AdminViewModel.cs" />
     <Compile Include="Models\TournamentModel.cs" />
     <Compile Include="Modules\AdminModule.cs" />
     <Compile Include="Modules\DefaultModule.cs" />
@@ -99,10 +107,7 @@
     <None Include="Views\Default\default.cshtml" />
     <Content Include="Views\Player\default.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Content\images\" />
-    <Folder Include="Content\js\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Doublewide.Application\Doublewide.Application.csproj">
       <Project>{432736A0-500A-4D1B-B876-FEEA7B5CB522}</Project>

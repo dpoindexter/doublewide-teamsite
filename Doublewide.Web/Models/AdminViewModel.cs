@@ -2,8 +2,9 @@
 
 namespace Doublewide.Web.Models
 {
-    public class SeasonEditingModel
+    public class AdminViewModel
     {
+        public IEnumerable<BlogPostModel> Posts { get; set; } 
         public IEnumerable<TournamentModel> Tournaments { get; set; }
     }
 }
