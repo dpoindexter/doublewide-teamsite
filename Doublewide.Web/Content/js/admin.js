@@ -1,51 +1,81 @@
 ﻿(function () {
 
     var root = this;
-    root.dwtx = root.dwtx || {};
-
-    dwtx.Admin = {};
+    var dwtx = root.dwtx = root.dwtx || {};
 
     //Posts
-    dwtx.Admin.PostModel = Backbone.Model.extend({
+    var PostModel = Backbone.Model.extend({
 
     });
 
-    dwtx.Admin.PostCollection = Backbone.Collection.extend({
-
-    });
-
-    dwtx.Admin.PostView = Backbone.View.extend({
-
+    var PostCollection = Backbone.Collection.extend({
+        model: PostModel
     });
 
     //Tournaments
-    dwtx.Admin.TournamentModel = Backbone.Model.extend({
+    var TournamentModel = Backbone.Model.extend({
 
     });
 
-    dwtx.Admin.PostCollection = Backbone.Collection.extend({
+    var TournamentCollection = Backbone.Collection.extend({
 
     });
 
-    dwtx.Admin.PostView = Backbone.View.extend({
+    var TournamentView = Backbone.View.extend({
 
     });
 
     //Games
-    dwtx.Admin.GameModel = Backbone.Model.extend({
+    var GameModel = Backbone.Model.extend({
 
     });
 
-    dwtx.Admin.PostCollection = Backbone.Collection.extend({
+    var GameCollection = Backbone.Collection.extend({
 
     });
 
-    dwtx.Admin.PostView = Backbone.View.extend({
+    var GameView = Backbone.View.extend({
 
     });
 
-    dwtx.Admin.init = function () {
+    //Controller views
+    var BlogEditor = Backbone.View.extend({
 
+        posts: null,
+        postsTemplate: null,
+        postsContainer: null,
+
+        initialize: function () {
+            this.posts = new PostCollection(this.options.postsData);
+            this.postsTemplate = _.template($('#posts-template').html());
+            this.postsContainer = this.$('#posts-template-container');
+            this.render();
+        },
+
+        render: function () {
+            var modelData = this.posts.toJSON();
+            var compiled = this.postsTemplate({ posts: modelData });
+            this.postsContainer.html(compiled);
+        }
+
+    });
+
+    var SeasonEditor = Backbone.View.extend({
+
+        tournaments: null,
+
+        initialize: function () {
+            this.tournaments = new TournamentCollection(viewData.tournaments);
+        }
+
+    });
+
+    dwtx.Admin = {
+        init: function () {
+            console.log('starting application');
+            this.Blog = new BlogEditor({ el: $('#blog-editor'), postsData: this.viewData.posts });
+            this.Season = new SeasonEditor();
+        }
     };
 
 }).call(this);

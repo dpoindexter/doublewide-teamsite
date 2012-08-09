@@ -18,18 +18,12 @@
     <body>
         <div class="container-fluid">
             <div class="row-fluid">
-                <section class="editor blog span6">
+                <section class="editor blog span6" id="blog-editor">
                     <h1>Update Blog</h1>
                     <div class="row-fluid">
                         <section class="blog-posts span3">
                             <h2>Post</h2>
-                            @foreach (var post in Model.Posts)
-                            {
-                                <div class="blog-post">
-                                    <h3>@post.Title</h3>
-                                    @post.Author on @post.Timestamp
-                                </div>
-                            }                
+                            <div id="posts-template-container"></div>      
                         </section>
                         <section class="blog-update span9">
                             <h2>New Post</h2>
@@ -43,11 +37,15 @@
             </div>
         </div>
 
-        <script type="text/x-template" id="post-template">
-            <div class="blog-post">
-                <h3><%=post.Title%></h3>
-                <%=post.Author%> on <%=post.Timestamp%>
-            </div>
+        <script type="text/x-template" id="posts-template">
+            <% _.each(posts, function(post) { %>
+            
+                <div class="blog-post" data-post-id="<%=post.Id%>">
+                    <h3><%=post.Title%></h3>
+                    <%=post.Author%> on <%=post.Timestamp%>
+                </div>
+            
+            <% });%>
         </script>
         
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
@@ -56,8 +54,8 @@
         <script type="text/javascript" src="@Url.Content("~/content/js/admin.js")"></script>
         <script type="text/javascript">
             (function () {
-                
-                dwtx.viewData = {
+
+                dwtx.Admin.viewData = {
                     posts: @Html.Raw(postJson),
                     tournaments: @Html.Raw(tournamentJson)
                 };
