@@ -18,20 +18,20 @@
     <body>
         <div class="container-fluid">
             <div class="row-fluid">
-                <section class="editor blog span6" id="blog-editor">
+                <section class="admin blog span6" id="blog-admin">
                     <h1>Update Blog</h1>
                     <div class="row-fluid">
                         <section class="blog-posts span3">
                             <h2>Post</h2>
                             <div id="posts-template-container"></div>      
                         </section>
-                        <section class="blog-update span9">
+                        <section class="blog-update span9" id="blog-editor">
                             <h2>New Post</h2>
                             <textarea class="blog-content"></textarea>
                         </section>
                     </div>
                 </section>
-                <section class="editor results span6">
+                <section class="admin results span6" id="season-admin">
                     <h1>Update Results</h1>
                 </section>
             </div>
@@ -40,7 +40,7 @@
         <script type="text/x-template" id="posts-template">
             <% _.each(posts, function(post) { %>
             
-                <div class="blog-post" data-post-id="<%=post.Id%>">
+                <div class="blog-post" data-id="<%=post.Id%>">
                     <h3><%=post.Title%></h3>
                     <%=post.Author%> on <%=post.Timestamp%>
                 </div>
