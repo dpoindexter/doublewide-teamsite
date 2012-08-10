@@ -103,8 +103,10 @@
     <Compile Include="Bootstrapper\CustomBootstrapper.cs" />
     <Compile Include="Models\BlogPostModel.cs" />
     <Compile Include="Models\GameModel.cs" />
-    <Compile Include="Models\PlayerModel.cs" />
+    <Compile Include="Models\PlayerDetailsModel.cs" />
+    <Compile Include="Models\PlayerListModel.cs" />
     <Compile Include="Models\AdminViewModel.cs" />
+    <Compile Include="Models\PlayerViewModel.cs" />
     <Compile Include="Models\TournamentModel.cs" />
     <Compile Include="Modules\AdminModule.cs" />
     <Compile Include="Modules\Api\PlayerApiModule.cs" />
@@ -121,6 +123,8 @@
     <Content Include="Views\Admin\default.cshtml" />
     <None Include="Views\Default\default.cshtml" />
     <Content Include="Views\Player\default.cshtml" />
+    <Content Include="Views\Shared\_layout.cshtml" />
+    <Content Include="Views\Shared\_foo.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

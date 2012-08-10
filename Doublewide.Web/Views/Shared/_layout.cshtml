@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>DW*TX | Doublewide Ultimate Club, Austin Texas</title>
+    <link rel="stylesheet" href="@Url.Content("~/content/css/lib/bootstrap.css")"/>
+    <link rel="stylesheet" href="@Url.Content("~/content/css/main.css")"/>
+    <script type="text/javascript" src="//use.typekit.net/kvk7cal.js"></script>
+    <script type="text/javascript">        try { Typekit.load(); } catch (e) { }</script>
+</head>
+<body>
+    <div class="container">
+        <header class="">
+            <div class="logotype span4"></div>
+            <nav class="span7">
+                <a href="@Url.Content("~/")">News</a>
+                <a href="@Url.Content("~/players")">Players</a>
+                <a href="@Url.Content("~/results")">Results</a>
+            </nav>
+        </header>
+        <section class="content">
+            @RenderBody()
+        </section>
+    </div>
+</body>
+</html>

@@ -7,5 +7,7 @@ namespace Doublewide.Application.Services.Contracts
     {
         Player GetPlayerById(int id);
         IEnumerable<Player> GetAllPlayers();
+        Player GetPlayerByName(string nameFromRoute);
+        Player GetPlayerByName(string firstName, string lastName);
     }
 }

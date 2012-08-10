@@ -11,9 +11,9 @@ namespace Doublewide.Domain.Team
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
-        public int Phone { get; set; }
+        public long Phone { get; set; }
         public int JerseyNumber { get; set; }
-        public DateTime DateOfBirth { get; set; }
+        public DateTime? DateOfBirth { get; set; }
         public int Height { get; set; }
         public Location PlaceOfBirth { get; set; }
         public Location CurrentResidence { get; set; }
@@ -27,11 +27,18 @@ namespace Doublewide.Domain.Team
         public string SomethingUnique { get; set; }
         public string Nicknames { get; set; }
         public IEnumerable<int> Seasons { get; set; }
+        public bool? IsCaptain { get; set; }
 
         [Ignore]
         public string FullName
         {
             get { return FirstName + " " + LastName; }
+        }
+
+        [Ignore]
+        public string NameForRoute
+        {
+            get { return String.Format("{0}-{1}", FirstName.ToLowerInvariant(), LastName.ToLowerInvariant()); }
         }
 
         [Ignore]
@@ -43,13 +50,31 @@ namespace Doublewide.Domain.Team
         [Ignore]
         public string FormattedPhone
         {
-            get { return Phone.ToString("0:(nnn) nnn-nnnn"); }
+            get { return Phone.ToString("(###) ###-####"); }
         }
 
         [Ignore]
         public string FormattedHeight
         {
-            get { return String.Format("{0}'{1}", Height / 12, Height % 12); }
+            get { return String.Format("{0}'{1}", (Height / 12), (Height % 12)); }
+        }
+
+        [Ignore]
+        public string Age
+        {
+            get { return (DateOfBirth.HasValue) ? (DateTime.Now.Year - DateOfBirth.Value.Year).ToString() : "No one knows"; }
+        }
+
+        [Ignore]
+        public string FormattedPlaceOfBirth
+        {
+            get { return PlaceOfBirth.ToString(); }
+        }
+
+        [Ignore]
+        public string FormattedCurrentResidence
+        {
+            get { return CurrentResidence.ToString(); }
         }
     }
 

@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Doublewide.Domain.Team;
 using Nancy;
 using Doublewide.Web.Models;
 using Doublewide.Application.Services.Contracts;
@@ -16,14 +18,43 @@ namespace Doublewide.Web.Modules
 
             Get["/"] = parameters =>
             {
-                var model = _playerService.GetAllPlayers().Select(x =>
+                var players = _playerService.GetAllPlayers();
+
+                var playerModels = players.Select(p =>
+                                                      {
+                                                          var m = new PlayerListModel();
+                                                          m.InjectFrom(p);
+                                                          return m;
+                                                      });
+
+                var selectedPlayer = new PlayerDetailsModel();
+                selectedPlayer.InjectFrom(players.FirstOrDefault());
+
+                var viewModel = new PlayerViewModel {Players = playerModels, SelectedPlayer = selectedPlayer};
+
+                return View["default.cshtml", viewModel];
+            };
+
+            Get[@"/(?<name>[A-Za-z]+\-[A-Za-z]+)"] = parameters =>
+            {
+                var nameParam = (string)parameters.name.Value;
+                var selectedPlayer = _playerService.GetPlayerByName(nameParam);
+
+                var players = _playerService.GetAllPlayers();
+
+                var playerModels = players.Select(p =>
                 {
-                    var m = new PlayerModel();
-                    m.InjectFrom(x);
+                    var m = new PlayerListModel();
+                    m.InjectFrom(p);
                     return m;
                 });
 
-                return View["default.cshtml", model];
+                var selectedPlayerModel = new PlayerDetailsModel();
+                selectedPlayerModel.InjectFrom(selectedPlayer);
+
+                var viewModel = new PlayerViewModel { Players = playerModels, SelectedPlayer = selectedPlayerModel };              
+
+                return View["default.cshtml", viewModel];
             };
         }
     }

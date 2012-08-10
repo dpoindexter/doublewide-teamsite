@@ -10,13 +10,14 @@ namespace Doublewide.Application.Repositories
     public class BaseRepository<TEntity, TId> : IRepository<TEntity, TId> where TEntity : IEntity<TId>, new()
     {
         protected readonly string _connectionString;
-        protected readonly IDbConnectionFactory _connectionFactory;
+        protected readonly OrmLiteConnectionFactory _connectionFactory;
         protected readonly IDbConnection _db;
 
         protected BaseRepository()
         {
+            //_connectionString = @"Data Source=.\SQLEXPRESS;initial catalog=Doublewide;user id=doublewide_user;password=welln@styh00p!";
             _connectionString =
-                @"Data Source=.\SQLEXPRESS;initial catalog=Doublewide;user id=doublewide_user;password=welln@styh00p!";
+                @"Server=7358298a-476c-448c-877e-a0a900913153.sqlserver.sequelizer.com;Database=db7358298a476c448c877ea0a900913153;User ID=yuuofpcpodiynufp;Password=eF6yuRUVqUJLcwGR7CVMoGiKat7XJYYmwEbdWKrpdbrzbCHkJLacaGwEwtybS6my;";
 
             _connectionFactory = new OrmLiteConnectionFactory(_connectionString, SqlServerOrmLiteDialectProvider.Instance);
             _db = _connectionFactory.OpenDbConnection();

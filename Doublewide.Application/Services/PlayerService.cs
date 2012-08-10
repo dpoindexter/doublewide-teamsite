@@ -23,5 +23,16 @@ namespace Doublewide.Application.Services
         {
             return _playerRepository.GetAll();
         }
+
+        public Player GetPlayerByName(string nameFromRoute)
+        {
+            var names = nameFromRoute.Split('-');
+            return GetPlayerByName(names[0], names[1]);
+        }
+
+        public Player GetPlayerByName(string firstName, string lastName)
+        {
+            return _playerRepository.GetPlayerByName(firstName, lastName);
+        }
     }
 }

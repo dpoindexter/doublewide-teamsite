@@ -6,6 +6,34 @@ body {
     margin: 0;
     padding: 0;
     height: 100%;
+    font-size: 14px;
+}
+
+h1 {
+    font-family: 'adelle', sans-serif;
+    line-height: 75px;
+    font-size: 36px;
+}
+
+h3 {
+    font-size: 16px;
+    margin: 15px 0 10px 0;
+}
+
+p {
+    font-size: 14px;
+    line-height: 20px;
+    color: #79b6f2;
+}
+
+table {
+    color: #79b6f2;    
+}
+
+th {
+    text-align: left;
+    color: #fff;
+    padding: 5px 0;
 }
 
 .container {
@@ -17,6 +45,20 @@ body {
 header {
     height: 50px;
     background-color: #080d37;    
+}
+
+nav {
+    height: 50px;
+}
+
+nav a {
+    font-family: 'adelle', sans-serif;
+    display: inline-block;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    line-height: 50px;
+    padding-right: 20px;
 }
 
 .logotype {
@@ -32,4 +74,31 @@ header {
 
 .content {
     clear: both;   
+}
+
+.player-list {
+    padding-top: 15px;
+}
+
+.player-link {
+    font-size: 16px;
+    display: block;
+    padding: 5px 0 5px 20px;
+    font-weight: bold;
+    color: #528feb;
+}
+
+a.player-link:hover {
+    text-decoration: none;
+    color: #7cb0ff;
+}
+
+.player-list .player-number {
+    display: inline-block;
+    width: 20px;
+    text-align: center;
+    padding: 4px;
+    color: #fff;
+    background-color: #32528c;
+    margin-right: 5px;
 }
