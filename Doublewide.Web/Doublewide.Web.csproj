@@ -121,7 +121,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Admin\default.cshtml" />
-    <None Include="Views\Default\default.cshtml" />
+    <Content Include="Views\Default\default.cshtml" />
     <Content Include="Views\Player\default.cshtml" />
     <Content Include="Views\Shared\_layout.cshtml" />
     <Content Include="Views\Shared\_foo.cshtml" />
