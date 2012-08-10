@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doublewide.Domain", "Double
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doublewide.Application", "Doublewide.Application\Doublewide.Application.csproj", "{432736A0-500A-4D1B-B876-FEEA7B5CB522}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doublewide.Web", "Doublewide.Web\Doublewide.Web.csproj", "{44D146DD-CDC5-490A-B89E-4F5D110FB07F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doublewide", "Doublewide.Web\Doublewide.csproj", "{44D146DD-CDC5-490A-B89E-4F5D110FB07F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
