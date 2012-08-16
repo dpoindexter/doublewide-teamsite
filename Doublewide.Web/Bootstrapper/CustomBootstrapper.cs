@@ -1,5 +1,6 @@
 ﻿using System.Configuration;
 using Nancy;
+using Nancy.Conventions;
 using Nancy.Diagnostics;
 using ServiceStack.OrmLite;
 using ServiceStack.OrmLite.SqlServer;
@@ -11,6 +12,15 @@ namespace Doublewide.Web.Bootstrapper
         protected override DiagnosticsConfiguration DiagnosticsConfiguration
         {
             get { return new DiagnosticsConfiguration { Password = @"password" }; }
+        }
+
+        protected override void ConfigureConventions(NancyConventions nancyConventions)
+        {
+            base.ConfigureConventions(nancyConventions);
+
+            nancyConventions.StaticContentsConventions.Add(
+                StaticContentConventionBuilder.AddDirectory("Content")
+            );
         }
 
         protected override void ConfigureApplicationContainer(TinyIoC.TinyIoCContainer container)
