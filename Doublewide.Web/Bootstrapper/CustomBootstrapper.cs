@@ -1,6 +1,8 @@
-﻿using Nancy;
+﻿using System.Configuration;
+using Nancy;
 using Nancy.Diagnostics;
 using ServiceStack.OrmLite;
+using ServiceStack.OrmLite.SqlServer;
 
 namespace Doublewide.Web.Bootstrapper
 {
@@ -13,9 +15,12 @@ namespace Doublewide.Web.Bootstrapper
 
         protected override void ConfigureApplicationContainer(TinyIoC.TinyIoCContainer container)
         {
-            //container.Register<OrmLiteConnectionFactory>();
-
             base.ConfigureApplicationContainer(container);
+
+            var connectionString = ConfigurationManager.ConnectionStrings["DoublewideConnection"].ConnectionString;
+
+            container.Register<IDbConnectionFactory>(
+                (c, p) => new OrmLiteConnectionFactory(connectionString, SqlServerOrmLiteDialectProvider.Instance));
         }
     }
 }

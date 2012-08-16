@@ -7,6 +7,11 @@ namespace Doublewide.Application.Repositories
 {
     public class PlayerRepository : BaseRepository<Player, int>, IPlayerRepository
     {
+        public PlayerRepository(IDbConnectionFactory connectionFactory)
+            : base(connectionFactory)
+        {
+        }
+
         public override System.Collections.Generic.IEnumerable<Player> GetAll()
         {
             var result = base.GetAll();
@@ -15,8 +20,12 @@ namespace Doublewide.Application.Repositories
 
         public Player GetPlayerByName(string firstName, string lastName)
         {
-            var test = _db.QuerySingle<Player>(new { firstName, lastName });
-            return test;
+            Player result;
+            using (var db = _connectionFactory.OpenDbConnection())
+            {
+                result = db.QuerySingle<Player>(new { firstName, lastName });
+            }
+            return result;
         }
     }
 }
