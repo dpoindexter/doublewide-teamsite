@@ -1,37 +1,19 @@
 ﻿@using Doublewide.Web.Models;
 @using System.Collections.Generic;
 @inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<IEnumerable<BlogPostModel>>
+              
+@{
+    Layout = "Shared/_layout.cshtml";
+}
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>DW*TX | Doublewide Ultimate Club, Austin Texas</title>
-    <link rel="stylesheet" href="@Url.Content("~/content/css/lib/bootstrap.css")"/>
-    <link rel="stylesheet" href="@Url.Content("~/content/css/main.css")"/>
-</head>
-<body>
-    <div class="container">
-        <header>
-            <div class="logotype span4"></div>
-            <nav class="span6">
-                <a href="news">News</a>
-                <a href="players">Players</a>
-                <a href="results">Results</a>
-            </nav>
-        </header>
-        <section class="content">
-            <section class="twitter span4">
-                <h2>@@doublewidetx</h2>
-            </section>
-            <section class="blog span6">
-                @foreach (var post in Model) { 
-                    <article class="blog-post">
-                        <h2>@post.Title</h2>
-                        <h4>@post.Timestamp</h4>
-                    </article>
-                }
-            </section>
-        </section>
-    </div>
-</body>
-</html>
+<section class="twitter span4">
+    <h2>@@doublewidetx</h2>
+</section>
+<section class="blog span6">
+    @foreach (var post in Model) { 
+        <article class="blog-post">
+            <h2>@post.Title</h2>
+            <h4>@post.Timestamp</h4>
+        </article>
+    }
+</section>
