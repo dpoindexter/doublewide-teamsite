@@ -72,6 +72,7 @@
     <Compile Include="Blog\Post.cs" />
     <Compile Include="Entities\Contracts\IEntity.cs" />
     <Compile Include="Entities\Entity.cs" />
+    <Compile Include="Enums\PostStatus.cs" />
     <Compile Include="Season\Game.cs" />
     <Compile Include="Season\Tournament.cs" />
     <Compile Include="Site\User.cs" />

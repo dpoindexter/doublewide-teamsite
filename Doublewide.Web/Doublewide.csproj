@@ -118,8 +118,9 @@
     <Compile Include="Models\GameModel.cs" />
     <Compile Include="Models\PlayerDetailsModel.cs" />
     <Compile Include="Models\PlayerListModel.cs" />
-    <Compile Include="Models\AdminViewModel.cs" />
-    <Compile Include="Models\PlayerViewModel.cs" />
+    <Compile Include="ViewModels\AdminViewModel.cs" />
+    <Compile Include="ViewModels\HomepageViewModel.cs" />
+    <Compile Include="ViewModels\PlayerViewModel.cs" />
     <Compile Include="Models\TournamentModel.cs" />
     <Compile Include="Modules\AdminModule.cs" />
     <Compile Include="Modules\Api\PlayerApiModule.cs" />

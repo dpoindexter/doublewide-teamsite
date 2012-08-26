@@ -1,21 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using Doublewide.Application.Services.Contracts;
+using Doublewide.Domain.Blog;
+using Doublewide.Domain.Enums;
 using Doublewide.Web.Models;
+using Doublewide.Web.ViewModels;
 using Nancy;
+using Omu.ValueInjecter;
 
 namespace Doublewide.Web.Modules
 {
     public class DefaultModule : NancyModule
     {
-        public DefaultModule()
-        {
-            var model = new List<BlogPostModel>
-            {
-                new BlogPostModel { Title = "First post!", Timestamp = DateTime.Now.AddDays(-3).ToString("d") },
-                new BlogPostModel { Title = "Welcome to the site!", Timestamp = DateTime.Now.ToString("d") }
-            };
+        private readonly IBlogService _blogService;
 
-            Get["/"] = parameters => View["default.cshtml", model];
+        public DefaultModule(IBlogService blogService)
+        {
+            //Injection
+            _blogService = blogService;
+
+            //Routes
+            Get["/"] = parameters => Default(parameters);
+        }
+
+        private Response Default(dynamic parameters)
+        {
+            var posts = _blogService.GetLastNPosts(3);
+
+            var postModels = posts.Select(x =>
+                                              {
+                                                  var m = new BlogPostModel();
+                                                  m.InjectFrom(x);
+                                                  return m;
+                                              });
+
+            var viewModel = new HomepageViewModel{Posts = postModels};
+
+            return View["default.cshtml", viewModel];
         }
     }
 }

@@ -72,10 +72,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\Contracts\IPlayerRepository.cs" />
+    <Compile Include="Repositories\Contracts\IPostRepository.cs" />
     <Compile Include="Repositories\Contracts\IRepository.cs" />
     <Compile Include="Repositories\Contracts\ITournamentRepository.cs" />
     <Compile Include="Repositories\PlayerRepository.cs" />
+    <Compile Include="Repositories\PostRepository.cs" />
     <Compile Include="Repositories\TournamentRepository.cs" />
+    <Compile Include="Services\BlogService.cs" />
+    <Compile Include="Services\Contracts\IBlogService.cs" />
     <Compile Include="Services\Contracts\IPlayerService.cs" />
     <Compile Include="Services\Contracts\ISeasonService.cs" />
     <Compile Include="Services\PlayerService.cs" />

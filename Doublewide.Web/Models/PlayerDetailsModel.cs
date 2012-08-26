@@ -6,7 +6,7 @@
         public int JerseyNumber { get; set; }
         public string Nicknames { get; set; }
         public string FormattedHeight { get; set; }
-        public int Age { get; set; }
+        public string Age { get; set; }
         public string FormattedPlaceOfBirth { get; set; }
         public string FormattedCurrentResidence { get; set; }
         public string College { get; set; }

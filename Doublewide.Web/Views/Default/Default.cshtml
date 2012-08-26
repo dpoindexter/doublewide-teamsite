@@ -1,19 +1,20 @@
-﻿@using Doublewide.Web.Models;
-@using System.Collections.Generic;
-@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<IEnumerable<BlogPostModel>>
+﻿@using Doublewide.Web.ViewModels;
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<HomepageViewModel>
               
 @{
     Layout = "Shared/_layout.cshtml";
+    ViewBag.HeaderClass = "home";
 }
 
 <section class="twitter span4">
     <h2>@@doublewidetx</h2>
 </section>
 <section class="blog span6">
-    @foreach (var post in Model) { 
+    @foreach (var post in Model.Posts) { 
         <article class="blog-post">
             <h2>@post.Title</h2>
-            <h4>@post.Timestamp</h4>
+            <p>@post.Content</p>
+            <h4>@post.Timestamp.ToString("d")</h4>
         </article>
     }
 </section>

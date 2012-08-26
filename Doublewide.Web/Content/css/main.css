@@ -44,7 +44,12 @@ th {
 
 header {
     height: 50px;
-    background-color: #080d37;    
+    background-color: #080d37
+}
+
+header.home {
+    height: 230px;
+    background: url('../images/banner.jpg') no-repeat left 50px;
 }
 
 nav {

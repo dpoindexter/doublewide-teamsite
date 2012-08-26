@@ -1,7 +1,7 @@
 ﻿@using System.Collections.Generic
 @using Doublewide.Web.Models
 @using ServiceStack.Text;
-@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<AdminViewModel>
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<Doublewide.Web.ViewModels.AdminViewModel>
               
 @{
     var postJson = JsonSerializer.SerializeToString(Model.Posts);

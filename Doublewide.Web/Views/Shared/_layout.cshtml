@@ -5,11 +5,11 @@
     <link rel="stylesheet" href="@Url.Content("~/content/css/lib/bootstrap.css")"/>
     <link rel="stylesheet" href="@Url.Content("~/content/css/main.css")"/>
     <script type="text/javascript" src="//use.typekit.net/kvk7cal.js"></script>
-    <script type="text/javascript">        try { Typekit.load(); } catch (e) { }</script>
+    <script type="text/javascript">try { Typekit.load(); } catch (e) { }</script>
 </head>
 <body>
     <div class="container">
-        <header class="">
+        <header class="@ViewBag.HeaderClass">
             <div class="logotype span4"></div>
             <nav class="span7">
                 <a href="@Url.Content("~/")">News</a>
