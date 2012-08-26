@@ -14,9 +14,9 @@
     <h1>News</h1>
     @foreach (var post in Model.Posts) { 
         <article class="blog-post">
+            <h4 class="blog-timestamp">@post.Timestamp.ToString("MMM d") | <a href="@Url.Content("~/players/" + post.AuthorLink)">@post.Author</a></h4>
             <h2>@post.Title</h2>
             <p>@post.Content</p>
-            <h4>@post.Timestamp.ToString("d")</h4>
         </article>
     }
 </section>
@@ -27,7 +27,9 @@
         $(function() {
             $("#twitter-feed").tweet({
                 username: 'doublewidetx',
-                count: 10
+                count: 10,
+                avatar_size: 32,
+                template: "{avatar}{join}{text}{time}"
             })
         });
     </script>
