@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Doublewide.Application.Services.Contracts;
-using Doublewide.Domain.Blog;
-using Doublewide.Domain.Enums;
 using Doublewide.Web.Models;
 using Doublewide.Web.ViewModels;
 using Nancy;
