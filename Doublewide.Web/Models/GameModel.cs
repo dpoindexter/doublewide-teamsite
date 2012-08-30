@@ -1,6 +1,6 @@
 ﻿namespace Doublewide.Web.Models
 {
-    public class GameModel
+    public class GameModel : BaseModel
     {
         public string Opponent { get; set; }
         public int DoublewideScore { get; set; }

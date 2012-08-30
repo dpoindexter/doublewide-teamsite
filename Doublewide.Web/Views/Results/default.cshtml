@@ -1,0 +1,54 @@
+﻿@using System.Linq
+@using Doublewide.Web.ViewModels
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<ResultsViewModel>
+
+@{
+    Layout = "Shared/_layout.cshtml";
+}
+
+<section class="twitter span4">
+    <h2>@@doublewidetx</h2>
+    <div id="twitter-feed"></div>
+</section>
+
+<section class="tournament-scores span7">
+    <h1>Season Results</h1>
+    @foreach (var tournament in Model.Tournaments)
+    {
+        <hgroup class="tournament-header">
+            <h3>@tournament.Location <span class="tournament-dates">@tournament.Dates</span></h3>
+            <h2>@tournament.Name</h2>
+        </hgroup>
+        
+        if (tournament.Games.Any())
+        {
+            <table class="tournament-games" cellspacing="0">
+                <tbody>
+                    @foreach (var game in tournament.Games)
+                    {
+                        <tr>
+                            <td class="tournament-game-doublewide">Doublewide</td>
+                            <td class="tournament-game-score">@game.DoublewideScore</td>
+                            <td class="tournament-game-opponent">@game.Opponent</td>
+                            <td class="tournament-game-score">@game.OpponentScore</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    }
+</section>
+
+@section js {
+    <script type="text/javascript" src="@Url.Content("~/content/js/lib/jquery.tweet.js")"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#twitter-feed").tweet({
+                username: 'doublewidetx',
+                count: 10,
+                avatar_size: 32,
+                template: "{avatar}{join}{text}{time}"
+            })
+        });
+    </script>
+}

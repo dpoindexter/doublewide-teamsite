@@ -14,8 +14,14 @@
     <h1>News</h1>
     @foreach (var post in Model.Posts) { 
         <article class="blog-post">
-            <h4 class="blog-timestamp">@post.Timestamp.ToString("MMM d") | <a href="@Url.Content("~/players/" + post.AuthorLink)">@post.Author</a></h4>
-            <h2>@post.Title</h2>
+            <hgroup class="blog-post-header">
+                <h4 class="blog-post-timestamp">
+                    <span class="blog-post-timestamp-day">@post.Timestamp.Day.ToString()</span>
+                    <span class="blog-post-timestamp-month">@post.Timestamp.ToString("MMM")</span>
+                </h4>
+                <a href="@Url.Content("~/players/" + post.AuthorLink)"><h4>@post.Author</h4></a>
+                <h2>@post.Title</h2>
+            </hgroup>
             <p>@post.Content</p>
         </article>
     }

@@ -94,6 +94,7 @@
     <Content Include="Content\css\lib\bootstrap.min.css" />
     <Content Include="Content\css\admin.css" />
     <Content Include="Content\css\main.css" />
+    <Content Include="Content\images\banner.jpg" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="Content\images\logotype.png" />
@@ -102,8 +103,10 @@
     <Content Include="Content\js\lib\backbone.js" />
     <Content Include="Content\js\lib\bootstrap.js" />
     <Content Include="Content\js\lib\bootstrap.min.js" />
+    <Content Include="Content\js\lib\jquery.tweet.js" />
     <Content Include="Content\js\lib\underscore-min.js" />
     <Content Include="Content\js\lib\underscore.js" />
+    <None Include="Views\Results\default.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -114,10 +117,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper\CustomBootstrapper.cs" />
+    <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\BlogPostModel.cs" />
     <Compile Include="Models\GameModel.cs" />
     <Compile Include="Models\PlayerDetailsModel.cs" />
     <Compile Include="Models\PlayerListModel.cs" />
+    <Compile Include="Modules\ResultModule.cs" />
     <Compile Include="ViewModels\AdminViewModel.cs" />
     <Compile Include="ViewModels\HomepageViewModel.cs" />
     <Compile Include="ViewModels\PlayerViewModel.cs" />
@@ -129,6 +134,7 @@
     <Compile Include="Modules\DefaultModule.cs" />
     <Compile Include="Modules\PlayerModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ResultsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -138,7 +144,6 @@
     <Content Include="Views\Default\default.cshtml" />
     <Content Include="Views\Player\default.cshtml" />
     <Content Include="Views\Shared\_layout.cshtml" />
-    <Content Include="Views\Shared\_foo.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
