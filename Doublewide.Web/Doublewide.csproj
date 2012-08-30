@@ -106,7 +106,7 @@
     <Content Include="Content\js\lib\jquery.tweet.js" />
     <Content Include="Content\js\lib\underscore-min.js" />
     <Content Include="Content\js\lib\underscore.js" />
-    <None Include="Views\Results\default.cshtml" />
+    <Content Include="Views\Results\default.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

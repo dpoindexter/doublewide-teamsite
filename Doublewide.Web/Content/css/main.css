@@ -47,6 +47,7 @@ th {
 }
 
 .container {
+    position: relative;
     margin-top: 0;
     background-color: #252c6d;
     padding-bottom: 50px;
@@ -86,6 +87,18 @@ nav a {
     -moz-box-shadow: #080d37 0px 1px 2px;
     -webkit-box-shadow: #080d37 0px 1px 2px;
     -o-box-shadow: #080d37 0px 1px 2px;
+}
+
+.photo-attribution {
+    position: absolute;
+    right: 5px;
+    padding-top: 2px;
+    font-size: 12px;
+    display: none;
+}
+
+.photo-attribution.visible {
+    display: block;
 }
 
 .content {
