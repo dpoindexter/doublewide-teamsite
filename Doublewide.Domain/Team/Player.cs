@@ -62,7 +62,18 @@ namespace Doublewide.Domain.Team
         [Ignore]
         public string Age
         {
-            get { return (DateOfBirth.HasValue) ? (DateTime.Now.Year - DateOfBirth.Value.Year).ToString() : "No one knows"; }
+            get
+            {
+                var age = 0;
+                if (DateOfBirth.HasValue)
+                {
+                    var now = DateTime.Now;
+                    var dob = DateOfBirth.Value;
+                    age = now.Year - dob.Year;
+                    if (now.Month < dob.Month || (now.Month == dob.Month && now.Day < dob.Day)) age--;
+                }
+                return (age == 0) ? age.ToString() : "No one knows";
+            }
         }
 
         [Ignore]
