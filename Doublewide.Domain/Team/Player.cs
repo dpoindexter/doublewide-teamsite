@@ -72,7 +72,7 @@ namespace Doublewide.Domain.Team
                     age = now.Year - dob.Year;
                     if (now.Month < dob.Month || (now.Month == dob.Month && now.Day < dob.Day)) age--;
                 }
-                return (age == 0) ? age.ToString() : "No one knows";
+                return (age > 0) ? age.ToString() : "No one knows";
             }
         }
 
