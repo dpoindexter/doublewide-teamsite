@@ -1,10 +1,12 @@
 ﻿@using Doublewide.Web.ViewModels;
+@using MarkdownDeep;
 @inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<HomepageViewModel>
               
 @{
     Layout = "Shared/_layout.cshtml";
     ViewBag.HeaderClass = "home";
     ViewBag.PhotoAttribution = " visible";
+    var md = new Markdown();
 }
 
 <section class="twitter span4">
@@ -23,7 +25,7 @@
                 <a href="@Url.Content("~/players/" + post.AuthorLink)"><h4>@post.Author</h4></a>
                 <h2>@post.Title</h2>
             </hgroup>
-            <p>@post.Content</p>
+            @Html.Raw(md.Transform(post.Content))
         </article>
     }
 </section>

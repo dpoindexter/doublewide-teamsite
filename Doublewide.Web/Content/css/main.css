@@ -143,6 +143,7 @@ nav a {
 .blog-post {
     padding-bottom: 30px;
     border-bottom: 1px solid #363e8a;
+    margin-bottom: 30px;
 }
 
 /* Roster and players */
@@ -265,11 +266,15 @@ a.player-link:hover {
     border-bottom: 1px solid #363e8a;
 }
 
-td.tournament-game-opponent {
+.tournament-game-opponent {
     border-left: 1px solid #363e8a;
 }
 
-td.tournament-game-score {
+.tournament-game-opponent, .tournament-game-doublewide {
+    width: 100px;
+}
+
+.tournament-game-score {
     font-weight: bold;
     border-left: 1px solid #363e8a;
 }
