@@ -12,6 +12,13 @@
 <section class="twitter span4">
     <h2>@@doublewidetx</h2>
     <div id="twitter-feed"></div>
+    
+    <h2 class="sponsors-heading">Sponsors & Supporters</h2>
+    <div class="sponsor">
+        <a href="http://www.ultiphotos.com" target="_blank" class="sponsor-logo"><img src="@Url.Content("~/content/images/ultiphotos-logo-small.png")" alt="Ultiphotos logo"/></a>
+        <a href="http://www.ultiphotos.com" target="_blank"><h4>Ultiphotos</h4></a>
+        <p>Ultiphotos brings high-quality sports photography to Ultimate's biggest tournaments</p>
+    </div>
 </section>
 <section class="blog span6">
     <h1>News</h1>
@@ -33,13 +40,13 @@
 @section js {
     <script type="text/javascript" src="@Url.Content("~/content/js/lib/jquery.tweet.js")"></script>
     <script type="text/javascript">
-        $(function() {
+        $(function () {
             $("#twitter-feed").tweet({
                 username: 'doublewidetx',
-                count: 10,
+                count: 6,
                 avatar_size: 32,
                 template: "{avatar}{join}{text}{time}"
-            })
+            });
         });
     </script>
 }

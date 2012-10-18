@@ -19,23 +19,25 @@
             <h3>@tournament.Location <span class="tournament-dates">@tournament.Dates</span></h3>
             <h2>@tournament.Name</h2>
         </hgroup>
-        
-        if (tournament.Games.Any())
+
+        if (!tournament.Games.Any())
         {
-            <table class="tournament-games" cellspacing="0">
-                <tbody>
-                    @foreach (var game in tournament.Games)
-                    {
-                        <tr>
-                            <td class="tournament-game-doublewide">Doublewide</td>
-                            <td class="tournament-game-score">@game.DoublewideScore</td>
-                            <td class="tournament-game-opponent">@game.Opponent</td>
-                            <td class="tournament-game-score">@game.OpponentScore</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+            continue;
         }
+        
+        <table class="tournament-games">
+            <tbody>
+                @foreach (var game in tournament.Games)
+                {
+                    <tr>
+                        <td class="tournament-game-doublewide">Doublewide</td>
+                        <td class="tournament-game-score">@game.DoublewideScore</td>
+                        <td class="tournament-game-opponent">@game.Opponent</td>
+                        <td class="tournament-game-score">@game.OpponentScore</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     }
 </section>
 
@@ -45,7 +47,7 @@
         $(function () {
             $("#twitter-feed").tweet({
                 username: 'doublewidetx',
-                count: 10,
+                count: 6,
                 avatar_size: 32,
                 template: "{avatar}{join}{text}{time}"
             })

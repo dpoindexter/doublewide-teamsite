@@ -271,10 +271,24 @@ a.player-link:hover {
 }
 
 .tournament-game-opponent, .tournament-game-doublewide {
-    width: 100px;
+    width: 120px;
 }
 
 .tournament-game-score {
     font-weight: bold;
     border-left: 1px solid #363e8a;
+}
+
+
+/* Sponsors */
+
+.sponsors-heading {
+    border-top: 1px solid #363e8a;
+    padding-top: 10px;
+    margin-top: 50px;
+}
+
+.sponsor a.sponsor-logo {
+    float: left;
+    margin: 3px 10px 30px 0;
 }
