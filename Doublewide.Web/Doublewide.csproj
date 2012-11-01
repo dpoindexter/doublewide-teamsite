@@ -79,6 +79,7 @@
       <Private>True</Private>
       <HintPath>..\packages\Nancy.Viewengines.Razor.0.11.0\lib\net40\System.Web.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -120,6 +121,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper\CustomBootstrapper.cs" />
+    <Compile Include="Extensions\HtmlHelpersExtensions.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\BlogPostModel.cs" />
     <Compile Include="Models\GameModel.cs" />
@@ -148,7 +150,9 @@
     <Content Include="Views\Player\default.cshtml" />
     <Content Include="Views\Shared\_layout.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Views\Shared\_twitter.cshtml" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Doublewide.Application\Doublewide.Application.csproj">
       <Project>{432736A0-500A-4D1B-B876-FEEA7B5CB522}</Project>
@@ -158,6 +162,12 @@
       <Project>{151FE31C-BE16-4949-829A-D5181152E0E1}</Project>
       <Name>Doublewide.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\News\default.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Media\default.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

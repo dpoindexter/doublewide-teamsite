@@ -1,52 +1,37 @@
-﻿@using Doublewide.Web.ViewModels;
-@using MarkdownDeep;
-@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<HomepageViewModel>
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<HomepageViewModel>
               
 @{
     Layout = "Shared/_layout.cshtml";
     ViewBag.HeaderClass = "home";
-    ViewBag.PhotoAttribution = " visible";
-    var md = new Markdown();
+    ViewBag.HasHeaderPhoto = true;
+    ViewBag.SidebarClass = "twitter";
+    ViewBag.ContentClass = "blog";
 }
 
-<section class="twitter span4">
-    <h2>@@doublewidetx</h2>
-    <div id="twitter-feed"></div>
-    
-    <h2 class="sponsors-heading">Sponsors & Supporters</h2>
-    <div class="sponsor">
-        <a href="http://www.ultiphotos.com" target="_blank" class="sponsor-logo"><img src="@Url.Content("~/content/images/ultiphotos-logo-small.png")" alt="Ultiphotos logo"/></a>
-        <a href="http://www.ultiphotos.com" target="_blank"><h4>Ultiphotos</h4></a>
-        <p>Ultiphotos brings high-quality sports photography to Ultimate's biggest tournaments</p>
-    </div>
-</section>
-<section class="blog span6">
-    <h1>News</h1>
-    @foreach (var post in Model.Posts) { 
-        <article class="blog-post">
-            <hgroup class="blog-post-header">
-                <h4 class="blog-post-timestamp">
-                    <span class="blog-post-timestamp-day">@post.Timestamp.Day.ToString()</span>
-                    <span class="blog-post-timestamp-month">@post.Timestamp.ToString("MMM")</span>
-                </h4>
-                <a href="@Url.Content("~/players/" + post.AuthorLink)"><h4>@post.Author</h4></a>
-                <h2>@post.Title</h2>
-            </hgroup>
-            @Html.Raw(md.Transform(post.Content))
-        </article>
-    }
-</section>
+@section sidebar {
+    @Html.Partial("Shared/_twitter.cshtml")
+    @Html.Partial("Shared/_sponsors.cshtml")  
+}
+
+<div class="about-dw">
+    Doublewide is a club ultimate team based in Austin, Texas. Founded in 2001, we're a well nasty brotherhood with players from around the country. Our consistent improvement over the last decade led to back-to-back national semifinal appearances in 2010 and 2011 and culminated in Doublewide's first national championship in 2012.
+</div>
+<h1>News</h1>
+@foreach (var post in Model.Posts) { 
+    <article class="blog-post">
+        <hgroup class="blog-post-header">
+            <h4 class="blog-post-timestamp">
+                <span class="blog-post-timestamp-day">@post.Timestamp.Day.ToString()</span>
+                <span class="blog-post-timestamp-month">@post.Timestamp.ToString("MMM")</span>
+            </h4>
+            <a href="@Url.Content("~/players/" + post.AuthorLink)"><h4>@post.Author</h4></a>
+            <h2>@post.Title</h2>
+        </hgroup>
+        @Html.Markdown(post.Content)
+    </article>
+}
 
 @section js {
     <script type="text/javascript" src="@Url.Content("~/content/js/lib/jquery.tweet.js")"></script>
-    <script type="text/javascript">
-        $(function () {
-            $("#twitter-feed").tweet({
-                username: 'doublewidetx',
-                count: 6,
-                avatar_size: 32,
-                template: "{avatar}{join}{text}{time}"
-            });
-        });
-    </script>
+    <script type="text/javascript" src="@Url.Content("~/content/js/twitter-settings.js")"></script>
 }

@@ -1,5 +1,4 @@
 ﻿using System.Configuration;
-using Doublewide.Application.Services.Contracts;
 using Nancy;
 using Nancy.Conventions;
 using Nancy.Diagnostics;

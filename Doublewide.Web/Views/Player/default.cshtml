@@ -1,62 +1,63 @@
-﻿@using Doublewide.Web.ViewModels
-@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<PlayerViewModel>
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<PlayerViewModel>
 
 @{
     Layout = "Shared/_layout.cshtml";
+    ViewBag.SidebarClass = "player-list";
+    ViewBag.ContentClass = "player-detail";
 }
 
-<section class="player-list span4">
+@section sidebar {
     @foreach (var player in Model.Players)
     {
         <a href="@Url.Content("~/players/" + player.NameForRoute)" class="player-link">
             <span class="player-number">@player.JerseyNumber</span>
             @player.FullName
         </a>
-    }
-</section>
-<section class="player-detail span7">
-    <h1>
-        <span class="player-number">@Model.SelectedPlayer.JerseyNumber</span>
-        @Model.SelectedPlayer.FullName
-    </h1>
-    <table class="player-stats">
-        <tbody>
-            <tr>
-                <th>Height</th><td>@Model.SelectedPlayer.FormattedHeight</td>
-            </tr>
-            <tr>
-                <th>Age</th><td>@Model.SelectedPlayer.Age</td>
-            </tr>
-            <tr>
-                <th>Born</th><td>@Model.SelectedPlayer.FormattedPlaceOfBirth</td>
-            </tr>
-            <tr>
-                <th>Lives</th><td>@Model.SelectedPlayer.FormattedCurrentResidence</td>
-            </tr>
-            <tr>
-                <th>College</th><td>@Model.SelectedPlayer.College</td>
-            </tr>
-            <tr>
-                <th>Occupation</th><td>@Model.SelectedPlayer.Occupation</td>
-            </tr>
-        </tbody>
-    </table>
+    } 
+}
+
+
+<h1>
+    <span class="player-number">@Model.SelectedPlayer.JerseyNumber</span>
+    @Model.SelectedPlayer.FullName
+</h1>
+<table class="player-stats">
+    <tbody>
+        <tr>
+            <th>Height</th><td>@Model.SelectedPlayer.FormattedHeight</td>
+        </tr>
+        <tr>
+            <th>Age</th><td>@Model.SelectedPlayer.Age</td>
+        </tr>
+        <tr>
+            <th>Born</th><td>@Model.SelectedPlayer.FormattedPlaceOfBirth</td>
+        </tr>
+        <tr>
+            <th>Lives</th><td>@Model.SelectedPlayer.FormattedCurrentResidence</td>
+        </tr>
+        <tr>
+            <th>College</th><td>@Model.SelectedPlayer.College</td>
+        </tr>
+        <tr>
+            <th>Occupation</th><td>@Model.SelectedPlayer.Occupation</td>
+        </tr>
+    </tbody>
+</table>
                 
-    <h3>Former club teams</h3>
-    <p>@Model.SelectedPlayer.FormerClubTeams</p>
+<h3>Former club teams</h3>
+<p>@Model.SelectedPlayer.FormerClubTeams</p>
                 
-    <h3>How you joined Doublewide</h3>
-    <p>@Model.SelectedPlayer.HowIJoinedDoublewide</p>
+<h3>How you joined Doublewide</h3>
+<p>@Model.SelectedPlayer.HowIJoinedDoublewide</p>
                 
-    <h3>Favorite Doublewide game or tournament</h3>
-    <p>@Model.SelectedPlayer.FavoriteDoublewideMoment</p>
+<h3>Favorite Doublewide game or tournament</h3>
+<p>@Model.SelectedPlayer.FavoriteDoublewideMoment</p>
                 
-    <h3>Favorite Action Movie</h3>
-    <p>@Model.SelectedPlayer.FavoriteActionMovie</p>
+<h3>Favorite Action Movie</h3>
+<p>@Model.SelectedPlayer.FavoriteActionMovie</p>
                 
-    <h3>Favorite Offseason Activities</h3>
-    <p>@Model.SelectedPlayer.FavoriteOffseasonActivities</p>
+<h3>Favorite Offseason Activities</h3>
+<p>@Model.SelectedPlayer.FavoriteOffseasonActivities</p>
                 
-    <h3>Something unique that no one knows about you</h3>
-    <p>@Model.SelectedPlayer.SomethingUnique</p>
-</section>
+<h3>Something unique that no one knows about you</h3>
+<p>@Model.SelectedPlayer.SomethingUnique</p>

@@ -105,6 +105,14 @@ nav a {
     clear: both;
 }
 
+.about-dw {
+    font-family: 'adelle';
+    font-weight: 200;
+    font-size: 18px;
+    line-height: 24px;
+    padding-top: 30px;
+}
+
 /* Blog post formatting */
 .blog-post-timestamp {
     float: left;

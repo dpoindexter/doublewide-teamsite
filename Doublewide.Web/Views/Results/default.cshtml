@@ -1,45 +1,42 @@
-﻿@using System.Linq
-@using Doublewide.Web.ViewModels
-@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<ResultsViewModel>
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<ResultsViewModel>
 
 @{
     Layout = "Shared/_layout.cshtml";
+    ViewBag.SidebarClass = "twitter";
+    ViewBag.ContentClass = "tournament-scores";
 }
 
-<section class="twitter span4">
-    <h2>@@doublewidetx</h2>
-    <div id="twitter-feed"></div>
-</section>
+@section sidebar {
+    @Html.Partial("Shared/_twitter.cshtml")
+}
 
-<section class="tournament-scores span7">
-    <h1>Season Results</h1>
-    @foreach (var tournament in Model.Tournaments)
+<h1>Season Results</h1>
+@foreach (var tournament in Model.Tournaments)
+{
+    <hgroup class="tournament-header">
+        <h3>@tournament.Location <span class="tournament-dates">@tournament.Dates</span></h3>
+        <h2>@tournament.Name</h2>
+    </hgroup>
+
+    if (!tournament.Games.Any())
     {
-        <hgroup class="tournament-header">
-            <h3>@tournament.Location <span class="tournament-dates">@tournament.Dates</span></h3>
-            <h2>@tournament.Name</h2>
-        </hgroup>
-
-        if (!tournament.Games.Any())
-        {
-            continue;
-        }
-        
-        <table class="tournament-games">
-            <tbody>
-                @foreach (var game in tournament.Games)
-                {
-                    <tr>
-                        <td class="tournament-game-doublewide">Doublewide</td>
-                        <td class="tournament-game-score">@game.DoublewideScore</td>
-                        <td class="tournament-game-opponent">@game.Opponent</td>
-                        <td class="tournament-game-score">@game.OpponentScore</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+        continue;
     }
-</section>
+        
+    <table class="tournament-games">
+        <tbody>
+            @foreach (var game in tournament.Games)
+            {
+                <tr>
+                    <td class="tournament-game-doublewide">Doublewide</td>
+                    <td class="tournament-game-score">@game.DoublewideScore</td>
+                    <td class="tournament-game-opponent">@game.Opponent</td>
+                    <td class="tournament-game-score">@game.OpponentScore</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
 
 @section js {
     <script type="text/javascript" src="@Url.Content("~/content/js/lib/jquery.tweet.js")"></script>

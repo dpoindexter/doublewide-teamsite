@@ -1,0 +1,17 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<PlayerViewModel>
+
+@{
+    Layout = "Shared/_layout.cshtml";
+    ViewBag.SidebarClass = "player-list";
+    ViewBag.ContentClass = "player-detail";
+}
+
+@section sidebar {
+    @foreach (var player in Model.Players)
+    {
+        <a href="@Url.Content("~/players/" + player.NameForRoute)" class="player-link">
+            <span class="player-number">@player.JerseyNumber</span>
+            @player.FullName
+        </a>
+    } 
+}
