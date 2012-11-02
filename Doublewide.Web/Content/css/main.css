@@ -11,6 +11,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
+    margin: 0;
     font-family: 'Source Sans Pro', 'Helvetica Neue','Helvetica', Helvetica, Arial, sans-serif;
     color: #fff;
 }
@@ -22,9 +23,18 @@ h1 {
 }
 
 h2 {
-    font-size: 24px;
+    font-size: 18px;
     line-height: 36px;
     margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+h2.section-header {
+    font-size: 16px;
+    margin-bottom: 0;
+    color: #50578c;
 }
 
 h3 {
@@ -36,17 +46,25 @@ h3 {
 h4,
 h5,
 h6 {
-  line-height: 18px;
+    line-height: 18px;
 }
 
 h4 {
     font-size: 14px;
 }
 
-a {
-    color: #2294e5;
+hgroup.headline {
+    margin-bottom: 20px;
 }
 
+hgroup.headline h1 {
+    line-height: 36px;
+    margin-bottom: 10px;
+}
+
+a, a h4 {
+    color: #2294e5;
+}
 
 a:hover {
     text-decoration: none;
@@ -76,12 +94,32 @@ th {
 
 header {
     height: 50px;
-    background-color: #080d37
+    background-color: #080d37;
+    position: relative;
 }
 
 header.home {
-    height: 330px;
-    background: #080d37 url('../images/banner-champions.jpg') no-repeat left 50px;
+    height: 480px;
+    background: #080d37 url('//s3.amazonaws.com/Doublewide/images/site/banner-champions-big.jpg') no-repeat left 50px;
+}
+
+.callout {
+    background-color: rgba(41,49,115,0.9);
+    position: absolute;
+    bottom: 0;
+    /*
+    -moz-box-shadow: inset 0px -4px 5px -2px #080d37;
+    -webkit-box-shadow: inset 0px -4px 5px -2px #080d37;
+    box-shadow: inset 0px -4px 5px -5px #080d37;
+*/
+}
+
+.about-dw {
+    font-family: 'adelle';
+    font-weight: 200;
+    font-size: 19px;
+    line-height: 30px;
+    padding: 25px 0;
 }
 
 nav {
@@ -101,7 +139,7 @@ nav a {
 .logotype {
     display: block;
     height: 120px;
-    background: #ed1f24 url('../images/logotype.png') no-repeat center center;
+    background: #ed1f24 url('//s3.amazonaws.com/Doublewide/images/site/logotype.png') no-repeat center center;
     border: 1px solid #f0696d;
     border-top: none;
     box-shadow: #080d37 0px 1px 2px;
@@ -123,16 +161,11 @@ nav a {
 }
 
 .content {
-    clear: both;
+border-top: 1px solid #363e8a;
 }
 
-.about-dw {
-    font-family: 'adelle';
-    font-weight: 200;
-    font-size: 18px;
-    line-height: 24px;
-    padding-top: 30px;
-}
+/* Front page blog post formatting */
+
 
 /* Blog post formatting */
 .blog-post-timestamp {
@@ -226,11 +259,7 @@ a.player-link:hover {
 /* Twitter widget */
 
 .twitter {
-    padding-top: 25px;
-}
-
-.twitter h2 {
-    margin-bottom: 15px;
+    /*padding-top: 25px;*/
 }
 
 .tweet_list {
@@ -311,7 +340,7 @@ a.player-link:hover {
 
 /* Sponsors */
 
-.sponsors-heading {
+.sponsors-header {
     border-top: 1px solid #363e8a;
     padding-top: 10px;
     margin-top: 50px;

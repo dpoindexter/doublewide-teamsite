@@ -3,9 +3,8 @@ using Doublewide.Web.Models;
 
 namespace Doublewide.Web.ViewModels
 {
-    public class HomepageViewModel
+    public class NewsViewModel
     {
-        public BlogPostModel FeaturedPost { get; set; }
         public IEnumerable<BlogPostModel> Posts { get; set; }
     }
 }

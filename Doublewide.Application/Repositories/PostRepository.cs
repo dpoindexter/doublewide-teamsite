@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Doublewide.Application.Repositories.Contracts;
 using Doublewide.Domain.Blog;
-using Doublewide.Domain.Enums;
 using ServiceStack.OrmLite;
 
 namespace Doublewide.Application.Repositories
@@ -14,19 +13,27 @@ namespace Doublewide.Application.Repositories
         {
         }
 
-        public IEnumerable<Post> GetAll(PostStatus status)
+        public IEnumerable<Post> GetPublished()
         {
-            var statusPredicate = BuildStatusPredicate(status);
-
             IEnumerable<Post> posts;
             using (var db = _connectionFactory.OpenDbConnection())
             {
-                posts = db.Select<Post>(p => p.Published == statusPredicate);
+                posts = db.Select<Post>(@"SELECT * FROM Post WHERE Published = 1 ORDER BY Timestamp DESC");
             }
             return posts;
         }
 
-        public IEnumerable<Post> GetAll(DateTime rangeStart, DateTime rangeEnd)
+        public IEnumerable<Post> GetUnpublished()
+        {
+            IEnumerable<Post> posts;
+            using (var db = _connectionFactory.OpenDbConnection())
+            {
+                posts = db.Select<Post>(@"SELECT * FROM Post WHERE Published = 1 ORDER BY Timestamp DESC");
+            }
+            return posts;
+        }
+
+        public IEnumerable<Post> GetInDateRange(DateTime rangeStart, DateTime rangeEnd)
         {
             IEnumerable<Post> posts;
             using (var db = _connectionFactory.OpenDbConnection())
@@ -44,17 +51,6 @@ namespace Doublewide.Application.Repositories
                 posts = db.Select<Post>(@"SELECT TOP {0} * FROM Post ORDER BY Timestamp DESC", limit);
             }
             return posts;
-        }
-
-        private static bool BuildStatusPredicate(PostStatus status)
-        {
-            switch (status)
-            {
-                case PostStatus.Published:
-                    return true;
-                default:
-                    return false;
-            }            
         }
     }
 }

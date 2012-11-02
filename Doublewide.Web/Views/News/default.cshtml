@@ -1,17 +1,27 @@
-﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<PlayerViewModel>
-
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<NewsViewModel>
+              
 @{
     Layout = "Shared/_layout.cshtml";
-    ViewBag.SidebarClass = "player-list";
-    ViewBag.ContentClass = "player-detail";
+    ViewBag.SidebarClass = "twitter";
+    ViewBag.ContentClass = "blog";
 }
 
 @section sidebar {
-    @foreach (var player in Model.Players)
-    {
-        <a href="@Url.Content("~/players/" + player.NameForRoute)" class="player-link">
-            <span class="player-number">@player.JerseyNumber</span>
-            @player.FullName
-        </a>
-    } 
+    @Html.Partial("Shared/_twitter.cshtml")
+}
+
+<h2 class="section-header">News</h2>
+
+@foreach (var post in Model.Posts) { 
+    <article class="blog-post">
+        <hgroup class="blog-post-header">
+            <h4 class="blog-post-timestamp">
+                <span class="blog-post-timestamp-day">@post.Timestamp.Day.ToString()</span>
+                <span class="blog-post-timestamp-month">@post.Timestamp.ToString("MMM")</span>
+            </h4>
+            <a href="@Url.Content("~/players/" + post.AuthorLink)"><h4>@post.Author</h4></a>
+            <h2>@post.Title</h2>
+        </hgroup>
+        @Html.Markdown(post.Content)
+    </article>
 }

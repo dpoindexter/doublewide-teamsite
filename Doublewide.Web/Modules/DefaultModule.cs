@@ -22,16 +22,20 @@ namespace Doublewide.Web.Modules
 
         private Response Default(dynamic parameters)
         {
-            var posts = _blogService.GetLastNPosts(3);
+            var posts = _blogService.GetLastNPosts(4);
 
             var postModels = posts.Select(x =>
                                               {
                                                   var m = new BlogPostModel();
                                                   m.InjectFrom(x);
                                                   return m;
-                                              });
+                                              }).ToList();
 
-            var viewModel = new HomepageViewModel{Posts = postModels};
+            var viewModel = new HomepageViewModel
+                                {
+                                    FeaturedPost = postModels.FirstOrDefault(),
+                                    Posts = postModels.Skip(1)
+                                };
 
             return View["default.cshtml", viewModel];
         }

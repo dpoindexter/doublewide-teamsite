@@ -12,22 +12,27 @@
 </head>
 <body>
     <div class="container row">
-        <header class="@ViewBag.HeaderClass twelve columns">
-            <a class="logotype four columns" href="@Url.Content("~/")"></a>
-            <nav class="eight columns">
-                <a href="@Url.Content("~/news")">News</a>
-                <a href="@Url.Content("~/players")">Players</a>
-                <a href="@Url.Content("~/results")">Results</a>
-                <a href="@Url.Content("~/media")">Media</a>
-            </nav>
+        <header class="@ViewBag.HeaderClass">
+            <div class="twelve columns">
+                <a class="logotype four columns" href="@Url.Content("~/")"></a>
+                <nav class="eight columns">
+                    <a href="@Url.Content("~/news")">News</a>
+                    <a href="@Url.Content("~/players")">Players</a>
+                    <a href="@Url.Content("~/results")">Results</a>
+                    <!--<a href="@Url.Content("~/media")">Media</a>-->
+                </nav>
+            </div>
+            @if (ViewBag.HeaderClass == "home")
+            {
+                <section class="callout twelve columns">
+                    @RenderSection("callout", false)
+                </section>
+            }
         </header>
-        @if (ViewBag.HasHeaderPhoto){
+        @if (false){
             <a class="photo-attribution visible" href="http://jeffbellphoto.ca/" target="_blank">Photo &copy; Jeff Bell</a>    
         }
-        <section class="callout twelve columns">
-            @RenderSection("callout", false)
-        </section>
-        <section class="content row">
+        <section class="content">
             <section class="@Html.CssClasses("four columns", (string)ViewBag.SidebarClass)">
                 @RenderSection("sidebar", true)
             </section>

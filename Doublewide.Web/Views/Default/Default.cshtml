@@ -19,17 +19,13 @@
     </div>    
 }
 
-<h1>Recent News</h1>
-@foreach (var post in Model.Posts) { 
-    <article class="blog-post">
-        <hgroup class="blog-post-header">
-            <h4 class="blog-post-timestamp">
-                <span class="blog-post-timestamp-day">@post.Timestamp.Day.ToString()</span>
-                <span class="blog-post-timestamp-month">@post.Timestamp.ToString("MMM")</span>
-            </h4>
-            <a href="@Url.Content("~/players/" + post.AuthorLink)"><h4>@post.Author</h4></a>
-            <h2>@post.Title</h2>
-        </hgroup>
-        @Html.Markdown(post.Content)
-    </article>
-}
+<h2 class="section-header">Recent</h2>
+
+<hgroup class="headline">
+    <h1>@Model.FeaturedPost.Title</h1>
+    <h4><a href="@Url.Content("~/players/" + Model.FeaturedPost.AuthorLink)">@Model.FeaturedPost.Author</a> on @Model.FeaturedPost.Timestamp.ToString("d")</h4>
+</hgroup>
+
+@Html.Markdown(Model.FeaturedPost.Content)
+
+<h4>Read more on <a href="@Url.Content("~/news/")">the blog &#8594;</a></h4>

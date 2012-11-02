@@ -28,12 +28,18 @@ namespace Doublewide.Application.Services
 
         public IEnumerable<Post> GetAllPosts(PostStatus status)
         {
-            return _postRepository.GetAll(status);
+            switch (status)
+            {
+                case PostStatus.Unpublished:
+                    return _postRepository.GetUnpublished();
+                default:
+                    return _postRepository.GetPublished();
+            }
         }
 
         public IEnumerable<Post> GetPostsByDateRange(DateTime rangeStart, DateTime rangeEnd)
         {
-            return _postRepository.GetAll(rangeStart, rangeEnd);
+            return _postRepository.GetInDateRange(rangeStart, rangeEnd);
         }
 
         public IEnumerable<Post> GetLastNPosts(int limit)

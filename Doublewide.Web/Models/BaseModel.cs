@@ -1,5 +1,4 @@
-﻿using Doublewide.Domain.Entities.Contracts;
-using Omu.ValueInjecter;
+﻿using Omu.ValueInjecter;
 
 namespace Doublewide.Web.Models
 {
