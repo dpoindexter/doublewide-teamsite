@@ -37,17 +37,3 @@
         </tbody>
     </table>
 }
-
-@section js {
-    <script type="text/javascript" src="@Url.Content("~/content/js/lib/jquery.tweet.js")"></script>
-    <script type="text/javascript">
-        $(function () {
-            $("#twitter-feed").tweet({
-                username: 'doublewidetx',
-                count: 6,
-                avatar_size: 32,
-                template: "{avatar}{join}{text}{time}"
-            })
-        });
-    </script>
-}

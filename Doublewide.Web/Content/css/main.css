@@ -10,6 +10,11 @@ body {
     color: #e5e0cf;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Source Sans Pro', 'Helvetica Neue','Helvetica', Helvetica, Arial, sans-serif;
+    color: #fff;
+}
+
 h1 {
     font-family: 'adelle', 'Source Sans Pro', sans-serif;
     line-height: 75px;
@@ -17,6 +22,8 @@ h1 {
 }
 
 h2 {
+    font-size: 24px;
+    line-height: 36px;
     margin-bottom: 15px;
 }
 
@@ -24,6 +31,16 @@ h3 {
     font-size: 16px;
     margin: 15px 0 10px 0;
     color: #2294e5
+}
+
+h4,
+h5,
+h6 {
+  line-height: 18px;
+}
+
+h4 {
+    font-size: 14px;
 }
 
 a {
@@ -50,7 +67,11 @@ th {
     position: relative;
     margin-top: 0;
     background-color: #252c6d;
-    padding-bottom: 50px;
+    padding-bottom: 50px;   
+    box-shadow: #151b4f 0px 0px 15px;
+    -moz-box-shadow: #151b4f 0px 0px 15px;
+    -webkit-box-shadow: #151b4f 0px 0px 15px;
+    -o-box-shadow: #151b4f 0px 0px 15px;
 }
 
 header {
@@ -59,8 +80,8 @@ header {
 }
 
 header.home {
-    height: 230px;
-    background: #080d37 url('../images/banner.jpg') no-repeat left 50px;
+    height: 330px;
+    background: #080d37 url('../images/banner-champions.jpg') no-repeat left 50px;
 }
 
 nav {
@@ -299,4 +320,14 @@ a.player-link:hover {
 .sponsor a.sponsor-logo {
     float: left;
     margin: 3px 10px 30px 0;
+}
+
+/* Utility */
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text;
+using Nancy.ViewEngines;
 using Nancy.ViewEngines.Razor;
 using IHtmlString = Nancy.ViewEngines.Razor.IHtmlString;
 
@@ -14,10 +15,13 @@ namespace Doublewide.Web.Extensions
             var context = htmlHelper.RenderContext.Context;
             if (context == null) return null;
 
-            var assetsHelper = (AssetsHelper)context.Items[instanceKey];
+            AssetsHelper assetsHelper;
+            if (context.Items.TryGetTypedValue(instanceKey, out assetsHelper))
+            {
+                return assetsHelper;
+            }
 
-            if (assetsHelper == null)
-                context.Items.Add(instanceKey, assetsHelper = new AssetsHelper());
+            context.Items.Add(instanceKey, assetsHelper = new AssetsHelper(htmlHelper.RenderContext));
 
             return assetsHelper;
         }
@@ -25,28 +29,31 @@ namespace Doublewide.Web.Extensions
         public ItemRegistrar Styles { get; private set; }
         public ItemRegistrar Scripts { get; private set; }
 
-        public AssetsHelper()
+        public AssetsHelper(IRenderContext renderContext)
         {
-            Styles = new ItemRegistrar(ItemRegistrarFormatters.StyleFormat);
-            Scripts = new ItemRegistrar(ItemRegistrarFormatters.ScriptFormat);
+            Styles = new ItemRegistrar(renderContext, ItemRegistrarFormatters.StyleFormat);
+            Scripts = new ItemRegistrar(renderContext, ItemRegistrarFormatters.ScriptFormat);
         }
     }
 
     public class ItemRegistrar
     {
+        private readonly IRenderContext _renderContext;
         private readonly string _format;
         private readonly IList<string> _items;
 
-        public ItemRegistrar(string format)
+        public ItemRegistrar(IRenderContext renderContext, string format)
         {
+            _renderContext = renderContext;
             _format = format;
             _items = new List<string>();
         }
 
         public ItemRegistrar Add(string url)
         {
-            if (!_items.Contains(url))
-                _items.Insert(0, url);
+            var path = _renderContext.ParsePath(url);
+            if (!_items.Contains(path))
+                _items.Add(path);
 
             return this;
         }

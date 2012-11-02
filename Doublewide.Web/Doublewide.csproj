@@ -94,6 +94,8 @@
     <Content Include="Content\css\lib\bootstrap.css" />
     <Content Include="Content\css\lib\bootstrap.min.css" />
     <Content Include="Content\css\admin.css" />
+    <Content Include="Content\css\lib\foundation.css" />
+    <Content Include="Content\css\lib\foundation.min.css" />
     <Content Include="Content\css\main.css" />
     <Content Include="Content\images\banner.jpg" />
     <Content Include="Content\images\favicon.png" />
@@ -110,6 +112,7 @@
     <Content Include="Content\js\lib\jquery.tweet.js" />
     <Content Include="Content\js\lib\underscore-min.js" />
     <Content Include="Content\js\lib\underscore.js" />
+    <Content Include="Content\js\twitter-settings.js" />
     <Content Include="Views\Results\default.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -121,6 +124,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper\CustomBootstrapper.cs" />
+    <Compile Include="Extensions\AssetsHelper.cs" />
+    <Compile Include="Extensions\DictionaryExtensions.cs" />
     <Compile Include="Extensions\HtmlHelpersExtensions.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\BlogPostModel.cs" />
@@ -168,6 +173,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Media\default.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_sponsors.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

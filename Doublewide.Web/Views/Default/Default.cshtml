@@ -13,10 +13,13 @@
     @Html.Partial("Shared/_sponsors.cshtml")  
 }
 
-<div class="about-dw">
-    Doublewide is a club ultimate team based in Austin, Texas. Founded in 2001, we're a well nasty brotherhood with players from around the country. Our consistent improvement over the last decade led to back-to-back national semifinal appearances in 2010 and 2011 and culminated in Doublewide's first national championship in 2012.
-</div>
-<h1>News</h1>
+@section callout {
+    <div class="about-dw">
+        Doublewide is a club ultimate team based in Austin, Texas. Founded in 2001, we're a well nasty brotherhood with players from around the country. Our consistent improvement over the last decade led to back-to-back national semifinal appearances in 2010 and 2011 and culminated in Doublewide's first national championship in 2012.
+    </div>    
+}
+
+<h1>Recent News</h1>
 @foreach (var post in Model.Posts) { 
     <article class="blog-post">
         <hgroup class="blog-post-header">
@@ -29,9 +32,4 @@
         </hgroup>
         @Html.Markdown(post.Content)
     </article>
-}
-
-@section js {
-    <script type="text/javascript" src="@Url.Content("~/content/js/lib/jquery.tweet.js")"></script>
-    <script type="text/javascript" src="@Url.Content("~/content/js/twitter-settings.js")"></script>
 }
