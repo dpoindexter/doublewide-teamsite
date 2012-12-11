@@ -24,7 +24,7 @@
                         <section class="blog-posts three columns">
                             <h2>Posts</h2>
                             <!-- ko foreach: { data: posts, as: 'post' } -->
-                            <div class="blog-post-summary" data-bind="attr: { dataPost: $index }">
+                            <div class="blog-post-summary" data-bind="click: $parent.selectedPost">
                                 <h3 data-bind="text: post.title"></h3>
                                 <p data-bind="text: post.author"></p>
                             </div>
