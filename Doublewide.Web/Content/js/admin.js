@@ -1,126 +1,71 @@
-﻿(function () {
+﻿; window.AdminModule = (function() {
 
-    var root = this;
-    var dwtx = root.dwtx = root.dwtx || {};
+    var Post = function(model) {
+        var model = model || {};
+        this.title = ko.observable(model.title || 'New Post');
+        this.content = ko.observable(model.content || '');
+        this.timeStamp = model.timeStamp || Date.now();
+        this.author = model.author || 'Doublewide';
+        this.published = model.published || false;
+        this.tags = ko.observableArray(model.tags || []);
+        this.summary = ko.observable(model.summary || '');
+        this.isFeatured = ko.observable(model.isFeatured || false);
+    };
 
-    var dispatcher = _.clone(Backbone.Events);
+    var Tournament = function(model) {
+        var model = model || {};
+        this.name = ko.observable(model.name || '');
+        this.location = ko.observable(model.location || '');
+        this.startDate = ko.observable(model.startDate || Date.now());
+        this.endDate = ko.observable(model.endDate || Date.now());
+        this.games = ko.observableArray(model.games || []);
+    };
 
-    //Posts
-    var PostModel = Backbone.Model.extend({
-        idAttribute: "Id"
-    });
+    var Game = function(model) {
+        var model = model || {};
+        this.opponent = ko.observable(model.opponent || '');
+        this.opponentScore = ko.observable(model.opponentScore);
+        this.doublewideScore = ko.observable(model.doublewideScore);
+    };
 
-    var PostCollection = Backbone.Collection.extend({
-        model: PostModel
-    });
-
-    var PostsView = Backbone.View.extend({
-
-        el: '#posts-template-container',
-        template: null,
-
-        events: {
-            'click .blog-post': "triggerSelectPost"
+    var public = {
+        blogViewModel: {
+            scope: null,
+            posts: ko.observableArray([]),
+            selectedPost: ko.observable(new Post())
         },
 
-        initialize: function () {
-            _.bindAll(this, "triggerSelectPost");
-
-            this.template = _.template($('#posts-template').html());
+        resultsViewModel: {
+            scope: null,
+            tournaments: ko.observableArray([])
         },
 
-        render: function () {
-            var compiled = this.template({ posts: this.collection.toJSON() });
-            this.$el.html(compiled);
-        },
-
-        triggerSelectPost: function (event) {
-            console.log("hey!");
-            dispatcher.trigger("select:post", event.target);
-        }
-    });
-
-    var EditPostView = Backbone.View.extend({
-
-        el: "#blog-editor",
-
-        initialize: function () {
-            var self = this;
-            _.bindAll(this, "handleSelectPost");
-
-            dispatcher.on("select:post", function (target) {
-                self.handleSelectPost(target);
+        mapData: function(data) {
+            this.blogViewModel.posts = _.map(data.posts, function(post) {
+                return new Post(post);
+            });
+            
+            this.resultsViewModel.posts = _.map(data.tournaments, function(tournament) {
+                return new Tournament(tournament);
             });
         },
 
-        render: function () {
-            if (!this.model) return this;
-            this.$('h2').html(this.model.get("Title"));
-            return this;
-        },
+        init: function(bootstrap) {
+            if (!bootstrap) return;
 
-        handleSelectPost: function (target) {
-            var id = $(target).parent(".blog-post").data("id");
-            this.model = this.collection.get(id);
-            this.render();
-        }
+            $(function() {
+                console.log(this);
+                this.blogViewModel.scope = $('#blog-admin')[0];
+                this.resultsViewModel.scope = $('#season-admin')[0];
 
-    });
+                this.mapData(bootstrap);
 
-    //Tournaments
-    var TournamentModel = Backbone.Model.extend();
-
-    var TournamentCollection = Backbone.Collection.extend({
-        model: TournamentModel
-    });
-
-    var TournamentView = Backbone.View.extend({
-
-    });
-
-    //Games
-    var GameModel = Backbone.Model.extend({
-
-    });
-
-    var GameCollection = Backbone.Collection.extend({
-
-    });
-
-    var GameView = Backbone.View.extend({
-
-    });
-
-    //Controller views
-    var BlogAdmin = Backbone.View.extend({
-
-        el: '#blog-admin',
-
-        posts: null,
-        postsView: null,
-        editView: null,
-
-        initialize: function () {
-            this.postsView = new PostsView({ collection: this.collection });
-            this.editView = new EditPostView({ collection: this.collection, model: new PostModel() });
-            this.render();
-        },
-
-        render: function () {
-            this.postsView.render();
-        }
-
-    });
-
-    var SeasonAdmin = Backbone.View.extend({
-
-    });
-
-    dwtx.Admin = {
-        init: function () {
-            this.Blog = new BlogAdmin({ collection: new PostCollection(this.viewData.posts) });
-            this.Season = new SeasonAdmin({ collection: new TournamentCollection(this.viewData.tournaments) });
+                ko.applyBindings(this.blogViewModel, this.blogViewModel.scope);
+                ko.applyBindings(this.resultsViewModel, this.resultsViewModel.scope);
+            }.call(this));
         }
     };
 
-}).call(this);
+    return public;
+
+})();

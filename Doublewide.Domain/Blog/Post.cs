@@ -13,6 +13,8 @@ namespace Doublewide.Domain.Blog
         public string Author { get; set; }
         public bool Published { get; set; }
         public IEnumerable<string> Tags { get; set; }
+        public string Summary { get; set; }
+        public bool IsFeatured { get; set; }
 
         [Ignore]
         public string AuthorLink
