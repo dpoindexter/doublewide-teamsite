@@ -30,13 +30,11 @@
 
     var public = {
         blogViewModel: {
-            scope: null,
             posts: ko.observableArray([]),
             selectedPost: ko.observable(new Post())
         },
 
         resultsViewModel: {
-            scope: null,
             tournaments: ko.observableArray([])
         },
 
@@ -53,15 +51,14 @@
         init: function(bootstrap) {
             if (!bootstrap) return;
 
-            $(function() {
-                console.log(this);
-                this.blogViewModel.scope = $('#blog-admin')[0];
-                this.resultsViewModel.scope = $('#season-admin')[0];
+            var blogView = $('#blog-admin')[0];
+            var resultsView = $('#season-admin')[0];
 
+            $(function() {
                 this.mapData(bootstrap);
 
-                ko.applyBindings(this.blogViewModel, this.blogViewModel.scope);
-                ko.applyBindings(this.resultsViewModel, this.resultsViewModel.scope);
+                ko.applyBindings(this.blogViewModel, blogView);
+                ko.applyBindings(this.resultsViewModel, resultsView);
             }.call(this));
         }
     };

@@ -6,6 +6,7 @@ using Nancy;
 using Doublewide.Web.Models;
 using Doublewide.Application.Services.Contracts;
 using Omu.ValueInjecter;
+using Doublewide.Web.Extensions;
 
 namespace Doublewide.Web.Modules
 {
@@ -13,7 +14,8 @@ namespace Doublewide.Web.Modules
     {
         private readonly IPlayerService _playerService;
 
-        public PlayerModule(IPlayerService playerService) : base("/players")
+        public PlayerModule(IPlayerService playerService) 
+            : base("/players")
         {
             //Injection
             _playerService = playerService;
@@ -32,7 +34,11 @@ namespace Doublewide.Web.Modules
             var selectedPlayer = new PlayerDetailsModel();
             selectedPlayer.InjectFrom(players.FirstOrDefault());
 
-            var viewModel = new PlayerViewModel { Players = GetPlayerList(players), SelectedPlayer = selectedPlayer };
+            var viewModel = new PlayerViewModel
+                                {
+                                    Players = GetPlayerList(players), 
+                                    SelectedPlayer = selectedPlayer
+                                };
 
             return View["default.cshtml", viewModel];            
         }
@@ -45,7 +51,11 @@ namespace Doublewide.Web.Modules
             var selectedPlayerModel = new PlayerDetailsModel();
             selectedPlayerModel.InjectFrom(selectedPlayer);
 
-            var viewModel = new PlayerViewModel { Players = GetPlayerList(), SelectedPlayer = selectedPlayerModel };
+            var viewModel = new PlayerViewModel
+                                {
+                                    Players = GetPlayerList(), 
+                                    SelectedPlayer = selectedPlayerModel
+                                };
 
             return View["default.cshtml", viewModel];
         }
@@ -53,16 +63,9 @@ namespace Doublewide.Web.Modules
         //Helpers
         private IEnumerable<PlayerListModel> GetPlayerList(IEnumerable<Player> players = null)
         {
-            players = players ?? _playerService.GetAllPlayers().ToList();
-
-            var playerModels = players.Select(p =>
-            {
-                var m = new PlayerListModel();
-                m.InjectFrom(p);
-                return m;
-            });
-
-            return playerModels;
+            return (players ?? _playerService.GetAllPlayers())
+                .MapToInjectedModel<Player, PlayerListModel>()
+                .ToList();
         }
     }
 }

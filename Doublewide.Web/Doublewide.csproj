@@ -109,6 +109,7 @@
     <Content Include="Content\js\lib\bootstrap.js" />
     <Content Include="Content\js\lib\bootstrap.min.js" />
     <Content Include="Content\js\lib\jquery.tweet.js" />
+    <Content Include="Content\js\lib\knockout-2.2.0.js" />
     <Content Include="Content\js\lib\underscore-min.js" />
     <Content Include="Content\js\lib\underscore.js" />
     <Content Include="Content\js\twitter-settings.js" />

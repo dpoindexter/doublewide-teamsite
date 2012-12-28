@@ -1,5 +1,5 @@
 ﻿using Doublewide.Application.Services.Contracts;
-using Doublewide.Web.Models;
+using Doublewide.Web.Models.Assemblers;
 using Doublewide.Web.ViewModels;
 using Nancy;
 using System.Linq;
@@ -23,7 +23,7 @@ namespace Doublewide.Web.Modules
         {
             var tournaments = _seasonService
                 .GetAllTournamentsForSeason()
-                .Select(x => new TournamentModel().ToModel(x));
+                .Select(x => x.ToModel());
 
             var viewModel = new ResultsViewModel {Tournaments = tournaments};
 

@@ -1,10 +1,10 @@
-﻿using System.Linq;
-using Doublewide.Application.Services.Contracts;
+﻿using Doublewide.Application.Services.Contracts;
+using Doublewide.Domain.Blog;
 using Doublewide.Domain.Enums;
 using Doublewide.Web.Models;
 using Doublewide.Web.ViewModels;
 using Nancy;
-using Omu.ValueInjecter;
+using Doublewide.Web.Extensions;
 
 namespace Doublewide.Web.Modules
 {
@@ -12,7 +12,8 @@ namespace Doublewide.Web.Modules
     {
         private readonly IBlogService _blogService;
 
-        public NewsModule(IBlogService blogService) : base("/news")
+        public NewsModule(IBlogService blogService) 
+            : base("/news")
         {
             //Injection
             _blogService = blogService;
@@ -23,14 +24,9 @@ namespace Doublewide.Web.Modules
 
         private Response Default(dynamic parameters)
         {
-            var posts = _blogService.GetAllPosts(PostStatus.Published);
-
-            var postModels = posts.Select(x =>
-            {
-                var m = new BlogPostModel();
-                m.InjectFrom(x);
-                return m;
-            }).ToList();
+            var postModels = _blogService
+                .GetAllPosts(PostStatus.Published)
+                .MapToInjectedModel<Post, BlogPostModel>();
 
             var viewModel = new NewsViewModel
             {

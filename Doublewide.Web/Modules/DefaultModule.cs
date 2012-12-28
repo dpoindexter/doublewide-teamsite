@@ -1,9 +1,10 @@
 ﻿using System.Linq;
 using Doublewide.Application.Services.Contracts;
+using Doublewide.Domain.Blog;
 using Doublewide.Web.Models;
 using Doublewide.Web.ViewModels;
 using Nancy;
-using Omu.ValueInjecter;
+using Doublewide.Web.Extensions;
 
 namespace Doublewide.Web.Modules
 {
@@ -22,14 +23,10 @@ namespace Doublewide.Web.Modules
 
         private Response Default(dynamic parameters)
         {
-            var posts = _blogService.GetLastNPosts(4);
-
-            var postModels = posts.Select(x =>
-                                              {
-                                                  var m = new BlogPostModel();
-                                                  m.InjectFrom(x);
-                                                  return m;
-                                              }).ToList();
+            var postModels = _blogService
+                .GetLastNPosts(4)
+                .MapToInjectedModel<Post, BlogPostModel>()
+                .ToList();
 
             var viewModel = new HomepageViewModel
                                 {

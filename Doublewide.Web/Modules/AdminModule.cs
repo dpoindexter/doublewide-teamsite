@@ -1,28 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Linq;
+using Doublewide.Application.Services.Contracts;
+using Doublewide.Domain.Blog;
+using Doublewide.Domain.Enums;
 using Doublewide.Web.Models;
+using Doublewide.Web.Models.Assemblers;
 using Doublewide.Web.ViewModels;
 using Nancy;
+using Doublewide.Web.Extensions;
 
 namespace Doublewide.Web.Modules
 {
     public class AdminModule : NancyModule
     {
-        public AdminModule() : base("/admin")
-        {
-            Get["/"] = parameters =>
-            {
-                var model = new AdminViewModel
-                {
-                    Posts = new List<BlogPostModel>
-                    {
-                        new BlogPostModel { Id = 1, Author = "Steven Darroh", Timestamp = DateTime.Now.AddDays(-3), Title = "Doublewide roster set" },
-                        new BlogPostModel { Id = 2, Author = "Jerrod Wolfe", Timestamp = DateTime.Now.AddDays(-10), Title = "Check out these jersey!" }
-                    }
-                };
+        private readonly IBlogService _blogService;
+        private readonly ISeasonService _seasonService;
 
-                return View["default.cshtml", model];
+        public AdminModule(IBlogService blogService, ISeasonService seasonService) 
+            : base("/admin")
+        {
+            //Injections
+            _blogService = blogService;
+            _seasonService = seasonService;
+
+            //Routes
+            Get["/"] = parameters => Default(parameters);
+        }
+
+        private Response Default(dynamic parameters)
+        {
+            var postModels = _blogService
+                .GetAllPosts(PostStatus.Published)
+                .MapToInjectedModel<Post, BlogPostModel>();
+
+            var resultsModel = _seasonService
+                .GetAllTournamentsForSeason()
+                .Select(x => x.ToModel());
+
+            var viewModel = new AdminViewModel
+            {
+                Posts = postModels,
+                Tournaments = resultsModel
             };
+
+            return View["default.cshtml", viewModel];
         }
     }
 }
