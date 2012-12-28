@@ -127,6 +127,8 @@
     <Compile Include="Extensions\AssetsHelper.cs" />
     <Compile Include="Extensions\DictionaryExtensions.cs" />
     <Compile Include="Extensions\HtmlHelpersExtensions.cs" />
+    <Compile Include="Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Models\Assemblers\TournamentModelAssembler.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\BlogPostModel.cs" />
     <Compile Include="Models\GameModel.cs" />

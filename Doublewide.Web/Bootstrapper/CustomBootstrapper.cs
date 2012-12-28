@@ -4,6 +4,7 @@ using Nancy.Conventions;
 using Nancy.Diagnostics;
 using ServiceStack.OrmLite;
 using ServiceStack.OrmLite.SqlServer;
+using ServiceStack.Text;
 
 namespace Doublewide.Web.Bootstrapper
 {
@@ -21,6 +22,13 @@ namespace Doublewide.Web.Bootstrapper
             nancyConventions.StaticContentsConventions.Add(
                 StaticContentConventionBuilder.AddDirectory("Content")
             );
+        }
+
+        protected override void ApplicationStartup(TinyIoC.TinyIoCContainer container, Nancy.Bootstrapper.IPipelines pipelines)
+        {
+            base.ApplicationStartup(container, pipelines);
+            JsConfig.DateHandler = JsonDateHandler.ISO8601;
+            JsConfig.EmitCamelCaseNames = true;
         }
 
         protected override void ConfigureApplicationContainer(TinyIoC.TinyIoCContainer container)

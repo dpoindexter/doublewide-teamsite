@@ -2,9 +2,10 @@
 
     var Post = function(model) {
         var model = model || {};
+        this.id = model.id;
         this.title = ko.observable(model.title || 'New Post');
         this.content = ko.observable(model.content || '');
-        this.timeStamp = model.timeStamp || Date.now();
+        this.timestamp = model.timeStamp || Date.now();
         this.author = model.author || 'Doublewide';
         this.published = model.published || false;
         this.tags = ko.observableArray(model.tags || []);
@@ -14,11 +15,17 @@
 
     var Tournament = function(model) {
         var model = model || {};
+
+        var games = model.games || [];
+        games = _.map(games, function(game) {
+            return new Game(game);
+        });
+
+        this.id = model.id;
         this.name = ko.observable(model.name || '');
         this.location = ko.observable(model.location || '');
-        this.startDate = ko.observable(model.startDate || Date.now());
-        this.endDate = ko.observable(model.endDate || Date.now());
-        this.games = ko.observableArray(model.games || []);
+        this.dates = ko.observable(model.dates || Date.now().toString());
+        this.games = ko.observableArray(games);
     };
 
     var Game = function(model) {
@@ -35,7 +42,8 @@
         },
 
         resultsViewModel: {
-            tournaments: ko.observableArray([])
+            tournaments: ko.observableArray([]),
+            selectedTournament: ko.observable(new Tournament())
         },
 
         mapData: function(data) {
@@ -43,7 +51,7 @@
                 return new Post(post);
             });
             
-            this.resultsViewModel.posts = _.map(data.tournaments, function(tournament) {
+            this.resultsViewModel.tournaments = _.map(data.tournaments, function(tournament) {
                 return new Tournament(tournament);
             });
         },

@@ -1,12 +1,7 @@
 ﻿@using System.Collections.Generic
 @using Doublewide.Web.Models
 @using ServiceStack.Text;
-@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<Doublewide.Web.ViewModels.AdminViewModel>
-              
-@{
-    var postJson = JsonSerializer.SerializeToString(Model.Posts);
-    var tournamentJson = JsonSerializer.SerializeToString(new List<TournamentModel>());  
-}
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<Doublewide.Web.ViewModels.AdminViewModel>           
 
 <!DOCTYPE html>
 <html>
@@ -38,6 +33,38 @@
                 </section>
                 <section class="admin results six columns" id="season-admin">
                     <h1>Scores</h1>
+                    <div class="row">
+                        <section class="four columns">
+                            <h2>Tournaments</h2>
+                            <!-- ko foreach: { data: tournaments, as: 'tournament' } -->
+                            <div class="tournament-item" data-bind="click: $parent.selectedTournament">
+                                <h3 data-bind="text: tournament.name"></h3>
+                                <p>
+                                    <span data-bind="text: tournament.location"></span><br/>
+                                    <span data-bind="text: tournament.dates"></span>
+                                </p>
+                            </div>
+                            <!-- /ko -->
+                        </section>
+                        <section class="eight columns" data-bind="with: selectedTournament">
+                            <h2 data-bind="text: name"></h2>
+                            <p>
+                                <span data-bind="text: location"></span><br/>
+                                <span data-bind="text: dates"></span>
+                            </p>
+                            <h3>Games</h3>
+                            <table>
+                                <tbody data-bind="foreach: { data: games, as: 'game' }">
+                                    <tr>
+                                        <td>Doublewide</td>
+                                        <td data-bind="text: game.doublewideScore"></td>
+                                        <td data-bind="text: game.opponent"></td>
+                                        <td data-bind="text: game.opponentScore"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </section>
+                    </div>
                 </section>
             </div>
         </div>
@@ -48,11 +75,8 @@
         <script type="text/javascript" src="@Url.Content("~/content/js/admin.js")"></script>
         <script type="text/javascript">
             var bootstrap = {
-                posts: [
-                    { title: 'This is a test post', author: 'Steven Darroh', content: 'We\'re writing about Doublewide' },
-                    { title: 'Second post', author: 'Daniel Poindexter', content: 'Some more stuff about Doublewide' }
-                ],
-                tournaments: []
+                posts: @Html.Raw(Model.Posts.ToJson()),
+                tournaments: @Html.Raw(Model.Tournaments.ToJson())
             };
 
             AdminModule.init(bootstrap);
